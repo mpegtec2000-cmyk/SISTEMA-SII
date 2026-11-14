@@ -1,0 +1,13 @@
+# Vercel Ignore for Next.js SaaS deployment
+.git
+.next
+node_modules
+erp-empresa/backup*
+erp-empresa/data/uploads*
+erp-empresa/data/generated*
+erp-empresa/data/*.db*
+erp-empresa/data/*.log
+*.zip
+*.bat
+scratch
+claves.txt

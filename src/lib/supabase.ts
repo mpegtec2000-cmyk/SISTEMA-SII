@@ -1,10 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  "https://fvhcazqoioosipnfwpsk.supabase.co";
 const supabaseAnonKey =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-  "";
+  "sb_publishable_On10FUqTMeVn8mlFroFuFg__CPmzyba";
 
 /**
  * Cliente público de Supabase para consultas desde el cliente/navegador
