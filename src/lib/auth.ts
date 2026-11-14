@@ -14,11 +14,16 @@ export const ROLE_LABEL: Record<Role, string> = {
 
 // Usuarios activos (incluye cuenta maestra solicitada Vision / Code + cuentas demo por rol).
 export const DEMO_USERS: (SessionUser & { password: string })[] = [
+  // Cuentas Empresa Cliente
+  { email: "gerencia@tuempresa.cl", username: "admin.empresa", name: "Gerencia General (Dueño)", role: "ADMIN", password: "Empresa2026!" },
+  { email: "ventas@tuempresa.cl", username: "ventas.empresa", name: "Ventas y Operaciones", role: "EMPRESA", password: "Ventas2026!" },
+  { email: "contador@tuempresa.cl", username: "contabilidad", name: "Contabilidad e Impuestos (F29)", role: "STAFF", password: "Finanzas2026!" },
+  // Cuentas Maestras
   { email: "vision@finanzia.cl", username: "vision", name: "Vision", role: "ADMIN", password: "Code" },
+  { email: "admin@finanzia.cl", username: "admin", name: "Administración Finanzia", role: "ADMIN", password: "demo1234" },
   { email: "persona@finanzia.cl", username: "persona", name: "Camila Rojas", role: "PERSONA", password: "demo1234" },
   { email: "empresa@finanzia.cl", username: "empresa", name: "Comercial Andes SpA", role: "EMPRESA", password: "demo1234" },
   { email: "staff@finanzia.cl", username: "staff", name: "Matías Soto (Contador)", role: "STAFF", password: "demo1234" },
-  { email: "admin@finanzia.cl", username: "admin", name: "Administración Finanzia", role: "ADMIN", password: "demo1234" },
 ];
 
 export const COOKIE = "finanzia_session";
