@@ -54,3 +54,6 @@ venv/
 
 # zip files & backups
 *.zip
+
+# Client credentials backup
+claves.txt

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
+import { supabase, getAdminSupabase } from "@/lib/supabase";
 
 export type WebLead = {
   id: string;
@@ -22,11 +23,9 @@ export type WebLead = {
 const DATA_DIR = path.join(process.cwd(), "erp-empresa", "data");
 const LEADS_FILE = path.join(DATA_DIR, "web_leads.json");
 
-function readLeads(): WebLead[] {
+function readLeadsLocal(): WebLead[] {
   try {
-    if (!fs.existsSync(LEADS_FILE)) {
-      return [];
-    }
+    if (!fs.existsSync(LEADS_FILE)) return [];
     const raw = fs.readFileSync(LEADS_FILE, "utf-8");
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
@@ -35,30 +34,71 @@ function readLeads(): WebLead[] {
   }
 }
 
-function writeLeads(leads: WebLead[]): void {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+function writeLeadsLocal(leads: WebLead[]): void {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), "utf-8");
+  } catch {
+    // Ignore local disk fallback errors
   }
-  fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), "utf-8");
 }
 
 export async function GET() {
-  const leads = readLeads();
+  try {
+    // 1. Intentar consultar desde Supabase en la nube
+    const { data, error } = await supabase
+      .from("web_leads")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error && data && data.length > 0) {
+      const formatted: WebLead[] = data.map((d: any) => ({
+        id: d.id,
+        createdAt: d.created_at,
+        source: d.source,
+        personType: d.person_type,
+        name: d.name,
+        rut: d.rut || "",
+        email: d.email || "",
+        phone: d.phone || "",
+        summary: d.summary,
+        problemPreview: d.problem_preview,
+        solutionPreview: d.solution_preview,
+        amountCLP: d.amount_clp ? Number(d.amount_clp) : undefined,
+        status: d.status,
+        payload: d.payload || {},
+      }));
+
+      return NextResponse.json({
+        ok: true,
+        total: formatted.length,
+        leads: formatted,
+        source: "supabase",
+      });
+    }
+  } catch {
+    // Continuar con fallback local
+  }
+
+  // 2. Fallback a almacenamiento local
+  const leads = readLeadsLocal();
   return NextResponse.json({
     ok: true,
     total: leads.length,
     leads,
+    source: "local",
   });
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as Partial<WebLead>;
-    const leads = readLeads();
+    const leadId = `LEAD-${Date.now()}-${Math.floor(100 + Math.random() * 900)}`;
+    const createdAt = new Date().toISOString();
 
     const newLead: WebLead = {
-      id: `LEAD-${Date.now()}-${Math.floor(100 + Math.random() * 900)}`,
-      createdAt: new Date().toISOString(),
+      id: leadId,
+      createdAt,
       source: body.source || "BANCARIZACION",
       personType: String(body.personType || "Persona / PyME"),
       name: String(body.name || "Solicitante Web").trim(),
@@ -73,13 +113,39 @@ export async function POST(req: NextRequest) {
       payload: body.payload || {},
     };
 
-    leads.unshift(newLead);
-    writeLeads(leads);
+    // 1. Guardar en Supabase en tiempo real
+    try {
+      const adminSb = getAdminSupabase();
+      await adminSb.from("web_leads").insert([
+        {
+          id: newLead.id,
+          source: newLead.source,
+          person_type: newLead.personType,
+          name: newLead.name,
+          rut: newLead.rut,
+          email: newLead.email,
+          phone: newLead.phone,
+          summary: newLead.summary,
+          problem_preview: newLead.problemPreview,
+          solution_preview: newLead.solutionPreview,
+          amount_clp: newLead.amountCLP || 0,
+          status: newLead.status,
+          payload: newLead.payload,
+        },
+      ]);
+    } catch (sbErr) {
+      console.error("Error guardando lead en Supabase:", sbErr);
+    }
+
+    // 2. Respaldo local
+    const localLeads = readLeadsLocal();
+    localLeads.unshift(newLead);
+    writeLeadsLocal(localLeads);
 
     return NextResponse.json({
       ok: true,
       lead: newLead,
-      message: "Solicitud registrada exitosamente en la bandeja comercial de FINANZIA.",
+      message: "Solicitud registrada exitosamente en la bandeja comercial de FINANZIA y Supabase Cloud.",
     });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Error procesando solicitud";
@@ -93,14 +159,24 @@ export async function PATCH(req: NextRequest) {
     if (!body.id || !body.status) {
       return NextResponse.json({ ok: false, error: "ID y estado requeridos" }, { status: 400 });
     }
-    const leads = readLeads();
-    const idx = leads.findIndex((l) => l.id === body.id);
-    if (idx === -1) {
-      return NextResponse.json({ ok: false, error: "Solicitud no encontrada" }, { status: 404 });
+
+    // 1. Actualizar en Supabase
+    try {
+      const adminSb = getAdminSupabase();
+      await adminSb.from("web_leads").update({ status: body.status }).eq("id", body.id);
+    } catch (sbErr) {
+      console.error("Error actualizando lead en Supabase:", sbErr);
     }
-    leads[idx].status = body.status;
-    writeLeads(leads);
-    return NextResponse.json({ ok: true, lead: leads[idx] });
+
+    // 2. Actualizar localmente
+    const leads = readLeadsLocal();
+    const idx = leads.findIndex((l) => l.id === body.id);
+    if (idx !== -1) {
+      leads[idx].status = body.status;
+      writeLeadsLocal(leads);
+    }
+
+    return NextResponse.json({ ok: true, id: body.id, status: body.status });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Error actualizando solicitud";
     return NextResponse.json({ ok: false, error: msg }, { status: 400 });
