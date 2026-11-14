@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-white text-slate-950">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERP Comercial y Operativo | Mercado Público, SII & Finanzas</title>
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            slate: {
+              850: '#151F32',
+              950: '#070C18'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/css/style.css?v=20261114b">
+</head>
+<body class="h-full flex overflow-hidden bg-[#EAECEF] p-1.5 sm:p-2.5 selection:bg-zinc-900 selection:text-white">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- ========================================================================
+       APP SHELL ENMARCADO (ESTILO DUAL-RAIL PROFESIONAL)
+       ======================================================================== -->
+  <div class="w-full h-full bg-[#F7F8FA] rounded-[22px] border border-black/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] flex p-1.5 sm:p-2 gap-1.5 sm:gap-2 overflow-hidden">
+
+    <!-- 1. RIEL PRIMARIO OSCURO DE ÍCONOS (DARK CAPSULE DOCK) -->
+    <nav class="erp-dark-rail w-[54px] shrink-0 flex flex-col items-center justify-between py-4 px-2 select-none" aria-label="Navegación Principal Rápida">
+      <div class="flex flex-col items-center space-y-5">
+        <a href="/dashboard" class="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:scale-105 transition-transform" title="FINANZIA · Ecosistema Central">
+          <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current" aria-hidden="true">
+            <path d="M4 4h7v7H4V4zm9 0l7 7h-7V4zM4 13h7v7l-7-7zm9 0h7v7h-7v-7z" />
+          </svg>
+        </a>
+
+        <div class="flex flex-col items-center space-y-2">
+          <button type="button" onclick="switchTab('dashboard')" data-rail-tab="dashboard" class="rail-tab-btn rail-active" title="Dashboard Ejecutivo">
+            <i data-lucide="home" class="w-[18px] h-[18px]"></i>
+          </button>
+          <button type="button" onclick="switchTab('pipeline')" data-rail-tab="pipeline" class="rail-tab-btn" title="Seguimiento & Oportunidades">
+            <i data-lucide="activity" class="w-[18px] h-[18px]"></i>
+          </button>
+          <button type="button" onclick="switchTab('folders')" data-rail-tab="folders" class="rail-tab-btn" title="Negocios & Licitaciones 360°">
+            <i data-lucide="target" class="w-[18px] h-[18px]"></i>
+          </button>
+          <button type="button" onclick="switchTab('sii')" data-rail-tab="sii" class="rail-tab-btn" title="SII & Facturación RCV">
+            <i data-lucide="briefcase" class="w-[18px] h-[18px]"></i>
+          </button>
+          <button type="button" onclick="switchTab('banking')" data-rail-tab="banking" class="rail-tab-btn" title="Bancos & Conciliación">
+            <i data-lucide="landmark" class="w-[18px] h-[18px]"></i>
+          </button>
+          <button type="button" onclick="switchTab('inventory')" data-rail-tab="inventory" class="rail-tab-btn" title="Stock SKU & Catálogos">
+            <i data-lucide="boxes" class="w-[18px] h-[18px]"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center space-y-2">
+        <button type="button" onclick="switchTab('companies')" data-rail-tab="companies" class="rail-tab-btn" title="Configuración Multi-Empresa & IA">
+          <i data-lucide="settings" class="w-[18px] h-[18px]"></i>
+        </button>
+        <a href="/personas" class="rail-tab-btn" title="Ir a Portal Personas">
+          <i data-lucide="user-check" class="w-[18px] h-[18px]"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- 2. BARRA LATERAL CONTEXTUAL SECUNDARIA (SUB-SIDEBAR LIGHT) -->
+    <aside class="erp-sub-sidebar w-64 flex flex-col justify-between shrink-0 select-none px-2.5 py-3 overflow-y-auto">
+      <div class="space-y-5">
+        <div class="px-2.5 pt-1 flex items-center justify-between">
+          <div>
+            <h1 class="font-heading font-semibold text-[16px] text-zinc-900 tracking-tight leading-tight">ERP Comercial</h1>
+            <p class="text-[11px] text-zinc-400 font-medium mt-0.5">Operaciones & Oportunidades</p>
+          </div>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-zinc-200/70 text-zinc-700 border border-black/[0.05]">v1.0</span>
+        </div>
+
+        <nav class="space-y-1">
+          <button data-tab="dashboard" class="nav-tab-btn w-full flex items-center justify-between text-left">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <i data-lucide="sliders-horizontal" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+              <span class="truncate">Resumen General</span>
+            </div>
+            <span id="nav-count-dashboard" class="nav-count-badge">360°</span>
+          </button>
+
+          <button data-tab="folders" class="nav-tab-btn w-full flex items-center justify-between text-left">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <i data-lucide="folder-kanban" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+              <span class="truncate">Negocios & Licitaciones</span>
+            </div>
+            <span id="nav-count-folders" class="nav-count-badge">4</span>
+          </button>
+
+          <button data-tab="pipeline" class="nav-tab-btn w-full flex items-center justify-between text-left">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <i data-lucide="archive" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+              <span class="truncate">Pipeline Cotizaciones</span>
+            </div>
+            <span id="nav-count-pipeline" class="nav-count-badge">2</span>
+          </button>
+        </nav>
+
+        <div class="h-px bg-black/[0.06] mx-2"></div>
+
+        <div>
+          <div class="px-2.5 mb-2 text-[11px] font-medium text-zinc-400 tracking-tight">Operación & Fiscal</div>
+          <nav class="space-y-1">
+            <button data-tab="sii" class="nav-tab-btn w-full flex items-center justify-between text-left">
+              <div class="flex items-center space-x-2.5 min-w-0">
+                <i data-lucide="circle-dot-dashed" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+                <span class="truncate">SII & Facturación RCV</span>
+              </div>
+              <span id="nav-count-sii" class="nav-count-badge">F29</span>
+            </button>
+
+            <button data-tab="banking" class="nav-tab-btn w-full flex items-center justify-between text-left">
+              <div class="flex items-center space-x-2.5 min-w-0">
+                <i data-lucide="credit-card" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+                <span class="truncate">Bancos & Conciliación</span>
+              </div>
+              <span id="nav-count-banking" class="nav-count-badge">100%</span>
+            </button>
+
+            <button data-tab="inventory" class="nav-tab-btn w-full flex items-center justify-between text-left">
+              <div class="flex items-center space-x-2.5 min-w-0">
+                <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+                <span class="truncate">Stock & Catálogo SKU</span>
+              </div>
+              <span id="nav-count-inventory" class="nav-count-badge">SKU</span>
+            </button>
+
+            <button type="button" onclick="openNewFolderModal()" class="w-full flex items-center space-x-2.5 px-2.5 py-1.5 text-[12.5px] font-medium text-zinc-400 hover:text-zinc-800 transition-colors rounded-lg">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Nueva Carpeta</span>
+            </button>
+          </nav>
+        </div>
+
+        <div class="h-px bg-black/[0.06] mx-2"></div>
+
+        <div>
+          <div class="px-2.5 mb-2 text-[11px] font-medium text-zinc-400 tracking-tight">Administración</div>
+          <nav class="space-y-1">
+            <button data-tab="companies" class="nav-tab-btn w-full flex items-center justify-between text-left">
+              <div class="flex items-center space-x-2.5 min-w-0">
+                <i data-lucide="building-2" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+                <span class="truncate">Multi-Empresa & IA</span>
+              </div>
+              <span id="nav-count-companies" class="nav-count-badge">3</span>
+            </button>
+
+            <button data-tab="users" class="nav-tab-btn w-full flex items-center justify-between text-left">
+              <div class="flex items-center space-x-2.5 min-w-0">
+                <i data-lucide="users" class="w-4 h-4 shrink-0 text-zinc-500"></i>
+                <span class="truncate">Usuarios & Accesos</span>
+              </div>
+              <span class="nav-count-badge">1</span>
+            </button>
+
+            <button type="button" onclick="switchTab('companies'); if(typeof startWizard==='function') startWizard();" class="w-full flex items-center space-x-2.5 px-2.5 py-1.5 text-[12.5px] font-medium text-zinc-400 hover:text-zinc-800 transition-colors rounded-lg">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Agregar Empresa</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Pie de Sidebar: Empresa Activa -->
+      <div class="pt-3 mt-3 border-t border-black/[0.06] space-y-2">
+        <div class="flex items-center space-x-2.5 p-2.5 rounded-xl bg-white border border-black/[0.07] shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+          <div class="w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center font-bold text-xs shrink-0">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+          </div>
+          <div class="overflow-hidden flex-1">
+            <div id="header-company-name" class="text-xs font-semibold text-zinc-900 truncate">Cargando empresa...</div>
+            <div id="header-company-rut" class="text-[10px] text-zinc-500 font-mono">-</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-1.5 text-[11px] font-medium">
+          <button onclick="switchCompanyUI()" class="px-2 py-1.5 rounded-[9px] bg-white hover:bg-zinc-100 text-zinc-700 border border-black/[0.07] transition-colors flex items-center justify-center space-x-1" title="Cambiar de empresa sin cerrar sesión">
+            <i data-lucide="repeat" class="w-3 h-3 text-zinc-500"></i>
+            <span>Empresa</span>
+          </button>
+          <button onclick="changePasswordUI()" class="px-2 py-1.5 rounded-[9px] bg-white hover:bg-zinc-100 text-zinc-700 border border-black/[0.07] transition-colors flex items-center justify-center space-x-1" title="Cambiar clave de acceso">
+            <i data-lucide="key-round" class="w-3 h-3 text-zinc-500"></i>
+            <span>Clave</span>
+          </button>
+          <button onclick="doLogout()" class="px-2 py-1.5 rounded-[9px] bg-white hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200 text-zinc-700 border border-black/[0.07] transition-colors flex items-center justify-center space-x-1" title="Cerrar sesión">
+            <i data-lucide="log-out" class="w-3 h-3 text-zinc-500"></i>
+            <span>Salir</span>
+          </button>
+        </div>
+        <div class="grid grid-cols-3 gap-1.5 text-[11px] font-medium">
+          <a href="/dashboard" class="px-2 py-1.5 rounded-[9px] bg-white hover:bg-zinc-100 text-zinc-700 border border-black/[0.07] text-center transition-colors flex items-center justify-center space-x-1" title="Ir al Selector Central FINANZIA">
+            <i data-lucide="layout-grid" class="w-3 h-3 text-zinc-500"></i>
+            <span>Panel</span>
+          </a>
+          <a href="/personas" class="px-2 py-1.5 rounded-[9px] bg-white hover:bg-zinc-100 text-zinc-700 border border-black/[0.07] text-center transition-colors flex items-center justify-center space-x-1" title="Ir al Portal Personas">
+            <i data-lucide="user" class="w-3 h-3 text-zinc-500"></i>
+            <span>Personas</span>
+          </a>
+          <a href="/" class="px-2 py-1.5 rounded-[9px] bg-white hover:bg-zinc-100 text-zinc-700 border border-black/[0.07] text-center transition-colors flex items-center justify-center space-x-1" title="Ir a Web Principal FINANZIA">
+            <i data-lucide="globe" class="w-3 h-3 text-zinc-500"></i>
+            <span>Web</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         3. ÁREA PRINCIPAL DE CONTENIDO (ELEVATED WHITE CANVAS)
+         ======================================================================== -->
+    <main class="erp-main-canvas flex-1 flex flex-col overflow-hidden">
+    
+      <!-- Topbar Superior -->
+      <header class="h-14 border-b border-black/[0.06] bg-white/95 backdrop-blur px-6 flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-3">
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+            En Línea
+          </span>
+          <span class="text-xs text-zinc-400 font-medium hidden sm:inline">Sincronización SII · Mercado Público · Fintoc</span>
+        </div>
+
+        <!-- Selector Global de Período Fiscal (Mes / Año) Sincronizado -->
+        <div class="flex items-center space-x-1.5 bg-[#F7F8FA] border border-black/[0.07] px-2.5 py-1 rounded-xl">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-zinc-500"></i>
+          <span class="text-[11px] text-zinc-600 font-medium hidden md:inline">Período:</span>
+          <button type="button" onclick="stepGlobalPeriod(-1)" class="p-1 hover:bg-zinc-200/60 text-zinc-600 hover:text-zinc-950 rounded-md transition-colors" title="Mes Anterior">
+            <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+          </button>
+          <input type="month" id="global-period-selector" value="2026-10" onchange="onGlobalPeriodChange(this.value)" class="bg-white border border-black/[0.08] rounded-lg px-2 py-0.5 text-xs text-zinc-900 font-semibold focus:outline-none cursor-pointer" title="Seleccionar mes y año para filtrar toda la app">
+          <button type="button" onclick="stepGlobalPeriod(1)" class="p-1 hover:bg-zinc-200/60 text-zinc-600 hover:text-zinc-950 rounded-md transition-colors" title="Mes Siguiente">
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+          <button type="button" onclick="setGlobalPeriodCurrent()" class="text-[10px] px-2 py-0.5 rounded-md bg-zinc-200/70 hover:bg-zinc-300/70 text-zinc-800 font-semibold ml-1 transition-colors" title="Ir al mes actual">Hoy</button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <a href="/api/export/consolidated-folders" class="px-3 py-1.5 bg-white hover:bg-zinc-50 text-zinc-800 text-xs font-medium rounded-xl border border-black/[0.09] shadow-[0_1px_2px_rgba(0,0,0,0.02)] flex items-center space-x-1.5 transition-all">
+            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <span class="hidden sm:inline">Auditoría Excel</span>
+          </a>
+          <button onclick="openNewFolderModal()" class="px-3.5 py-1.5 bg-[#141416] hover:bg-zinc-800 text-white text-xs font-semibold rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.12)] flex items-center space-x-1.5 transition-all">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Nueva Carpeta</span>
+          </button>
+        </div>
+      </header>
+
+    <!-- Contenedor con Scroll de Vistas -->
+    <div class="flex-1 overflow-y-auto p-6">
+
+      <!-- ====================================================================
+           1. VISTA DASHBOARD (EJECUTIVO & FINANCIERO)
+           ==================================================================== -->
+      <section id="view-dashboard" class="tab-view-content space-y-6 fade-in">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-slate-950">Dashboard Ejecutivo y Financiero</h2>
+            <p class="text-xs text-slate-600">Trazabilidad consolidada de ventas, rentabilidad neta, costos desglosados, proyección tributaria F29 y cobranzas.</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs text-slate-600 font-mono">Consolidado en vivo</span>
+          </div>
+        </div>
+
+        <!-- Fila de Tarjetas KPI Principales (5 Tarjetas) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <!-- 1. Venta Neta Total -->
+          <div class="erp-kpi-card">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">Ventas Netas Totales</span>
+              <div class="erp-icon-squircle">
+                <i data-lucide="trending-up" class="w-4 h-4 text-zinc-700"></i>
+              </div>
+            </div>
+            <div>
+              <div id="kpi-ventas-netas" class="text-2xl font-bold font-mono tracking-tight text-zinc-900">$0</div>
+              <div class="text-[11px] text-zinc-400 font-medium mt-1">100% de facturación / pedidos</div>
+            </div>
+          </div>
+
+          <!-- 2. Costo Neto Total (Solicitado) -->
+          <div class="erp-kpi-card">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">Costo Neto Total</span>
+              <div class="erp-icon-squircle">
+                <i data-lucide="receipt" class="w-4 h-4 text-zinc-700"></i>
+              </div>
+            </div>
+            <div>
+              <div id="kpi-costo-neto" class="text-2xl font-bold font-mono tracking-tight text-zinc-900">$0</div>
+              <div class="text-[11px] text-zinc-500 font-medium mt-1.5 flex justify-between">
+                <span>Directo: <b id="kpi-costo-directo" class="text-zinc-800 font-mono font-medium">$0</b></span>
+                <span>Gastos: <b id="kpi-gastos-op" class="text-zinc-800 font-mono font-medium">$0</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Utilidad Neta Real -->
+          <div class="erp-kpi-card">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">Utilidad Neta Real</span>
+              <div class="erp-icon-squircle">
+                <i data-lucide="wallet" class="w-4 h-4 text-zinc-700"></i>
+              </div>
+            </div>
+            <div>
+              <div id="kpi-utilidad-neta" class="text-2xl font-bold font-mono tracking-tight text-zinc-900">$0</div>
+              <div class="text-[11px] text-zinc-500 font-medium mt-1.5 flex items-center justify-between">
+                <span>Margen:</span>
+                <span id="kpi-margen-promedio" class="font-bold font-mono text-zinc-900 erp-status-pill erp-status-pill-neutral">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. F29 Proyectado (SII) -->
+          <div class="erp-kpi-card">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">F29 Proyectado</span>
+              <span id="kpi-iva-badge" class="erp-status-pill erp-status-pill-neutral">-</span>
+            </div>
+            <div>
+              <div id="kpi-f29-total" class="text-2xl font-bold font-mono tracking-tight text-zinc-900">$0</div>
+              <div class="text-[11px] text-zinc-500 font-medium mt-1.5 flex justify-between">
+                <span>IVA Déb: <b id="kpi-iva-debito" class="text-zinc-800 font-mono font-medium">$0</b></span>
+                <span>Créd: <b id="kpi-iva-credito" class="text-zinc-800 font-mono font-medium">$0</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Cuentas por Cobrar vs Pagar -->
+          <div class="erp-kpi-card">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">Flujo CxC vs CxP</span>
+              <div class="erp-icon-squircle">
+                <i data-lucide="scale" class="w-4 h-4 text-zinc-700"></i>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-[10px] text-zinc-400 font-medium uppercase tracking-wider">Por Cobrar</div>
+                  <div id="kpi-cxc-total" class="text-sm font-bold font-mono text-zinc-900">$0</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] text-zinc-400 font-medium uppercase tracking-wider">Por Pagar</div>
+                  <div id="kpi-cxp-total" class="text-sm font-bold font-mono text-zinc-900">$0</div>
+                </div>
+              </div>
+              <div class="text-[11px] text-zinc-500 font-medium mt-2 flex justify-between items-center border-t border-zinc-100 pt-1.5">
+                <span>Alertas Stock:</span>
+                <span id="kpi-stock-critico" class="font-bold font-mono text-zinc-800">0 ítems</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             PANEL ANALÍTICO: ¿POR QUÉ MOTIVO SE LLEGÓ A ESTA UTILIDAD?
+             ==================================================================== -->
+        <div class="bg-white border border-black/[0.08] rounded-[16px] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-5">
+          <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-100 pb-4 gap-2">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-[11px] bg-zinc-100 text-zinc-900 border border-black/[0.04] flex items-center justify-center font-bold">
+                <i data-lucide="bar-chart-3" class="w-5 h-5 text-zinc-700"></i>
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-base text-zinc-900 flex items-center space-x-2">
+                  <span>Trazabilidad y Origen de la Utilidad Neta</span>
+                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-zinc-100 text-zinc-700 border border-zinc-200">Análisis Causal</span>
+                </h3>
+                <p class="text-xs text-zinc-500">Explicación financiera paso a paso de cómo los ingresos y costos derivaron en el resultado actual.</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Margen Neto Global</span>
+              <div id="waterfall-margen-badge" class="text-xl font-heading font-bold font-mono text-zinc-900">0%</div>
+            </div>
+          </div>
+
+          <!-- Cascada Financiera de Deducciones (Waterfall) -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <!-- Paso 1: Ingreso Neto -->
+            <div class="bg-[#FBFBFC] p-4 rounded-[12px] border border-zinc-200/80 relative">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10.5px] font-bold text-zinc-600 uppercase tracking-wider">(+) FACTURACIÓN NETA</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-zinc-200/60 text-zinc-800 font-mono">100.0%</span>
+              </div>
+              <div id="waterfall-venta-neta" class="text-xl font-bold font-heading font-mono text-zinc-900">$0</div>
+              <p class="text-[11px] text-zinc-500 mt-2 leading-relaxed">Total de ventas reconocidas por órdenes y contratos de clientes.</p>
+            </div>
+
+            <!-- Paso 2: Costos Directos Compras -->
+            <div class="bg-[#FBFBFC] p-4 rounded-[12px] border border-zinc-200/80 relative">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10.5px] font-bold text-zinc-600 uppercase tracking-wider">(-) COSTOS DIRECTOS</span>
+                <span id="waterfall-costo-dir-pct" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-zinc-200/60 text-zinc-800 font-mono">0%</span>
+              </div>
+              <div id="waterfall-costo-directo" class="text-xl font-bold font-heading font-mono text-zinc-900">-$0</div>
+              <p class="text-[11px] text-zinc-500 mt-2 leading-relaxed">Compras de insumos, servidores y hardware facturados por proveedores en RCV.</p>
+            </div>
+
+            <!-- Paso 3: Gastos Operativos -->
+            <div class="bg-[#FBFBFC] p-4 rounded-[12px] border border-zinc-200/80 relative">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10.5px] font-bold text-zinc-600 uppercase tracking-wider">(-) GASTOS OPERATIVOS</span>
+                <span id="waterfall-gastos-pct" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-zinc-200/60 text-zinc-800 font-mono">0%</span>
+              </div>
+              <div id="waterfall-gastos-op" class="text-xl font-bold font-heading font-mono text-zinc-900">-$0</div>
+              <p class="text-[11px] text-zinc-500 mt-2 leading-relaxed">Fletes de traslado refrigerado, subcontratos de instalación y honorarios técnicos.</p>
+            </div>
+
+            <!-- Paso 4: Utilidad Neta Resultante -->
+            <div class="bg-[#FBFBFC] p-4 rounded-[12px] border border-emerald-500/30 relative">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10.5px] font-bold text-emerald-700 uppercase tracking-wider">(=) UTILIDAD NETA</span>
+                <span id="waterfall-utilidad-pct" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-800 font-mono">0%</span>
+              </div>
+              <div id="waterfall-utilidad-neta" class="text-xl font-bold font-heading font-mono text-zinc-900">$0</div>
+              <p class="text-[11px] text-zinc-500 mt-2 leading-relaxed">Excedente neto disponible tras descontar la totalidad de egresos y costos del negocio.</p>
+            </div>
+          </div>
+
+          <!-- Factores Clave y Motores de Rentabilidad (Drivers) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+            <div class="bg-[#FBFBFC] p-3.5 rounded-[12px] border border-zinc-200/70 text-xs space-y-1">
+              <div class="font-bold text-zinc-900 flex items-center space-x-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-zinc-600"></i>
+                <span>Aporte Mercado Público vs Privado</span>
+              </div>
+              <p id="driver-canal-desc" class="text-zinc-500 text-[11px] leading-relaxed">Calculando participación de licitaciones públicas en la rentabilidad...</p>
+            </div>
+
+            <div class="bg-[#FBFBFC] p-3.5 rounded-[12px] border border-zinc-200/70 text-xs space-y-1">
+              <div class="font-bold text-zinc-900 flex items-center space-x-1.5">
+                <i data-lucide="award" class="w-3.5 h-3.5 text-zinc-600"></i>
+                <span>Carpeta con Mayor Contribución</span>
+              </div>
+              <p id="driver-top-folder" class="text-zinc-500 text-[11px] leading-relaxed">Identificando el centro de costo más rentable...</p>
+            </div>
+
+            <div class="bg-[#FBFBFC] p-3.5 rounded-[12px] border border-zinc-200/70 text-xs space-y-1">
+              <div class="font-bold text-zinc-900 flex items-center space-x-1.5">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-600"></i>
+                <span>Eficiencia Operativa de Costos</span>
+              </div>
+              <p id="driver-cost-efficiency" class="text-zinc-500 text-[11px] leading-relaxed">Evaluando la tasa de absorción de gastos sobre ventas...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico Financiero de Barras -->
+        <div class="bg-white border border-black/[0.08] rounded-[16px] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading font-bold text-sm text-zinc-900">Comparativa Financiera: Venta Neta vs Costo Neto vs Utilidad por Carpeta</h3>
+            <span class="text-xs text-zinc-400 font-mono">Valores Netos en $CLP</span>
+          </div>
+          <div class="h-64">
+            <canvas id="dashboardChart"></canvas>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             DESGLOSE DETALLADO DE CARPETAS DE NEGOCIO (ABAJO)
+             ==================================================================== -->
+        <div class="bg-white border border-black/[0.08] rounded-[16px] shadow-[0_1px_3px_rgba(0,0,0,0.02)] overflow-hidden">
+          <div class="p-4 border-b border-zinc-100 flex flex-col md:flex-row md:items-center justify-between bg-zinc-50/70 gap-2">
+            <div>
+              <h3 class="font-heading font-bold text-sm text-zinc-900 flex items-center space-x-2">
+                <i data-lucide="folder-kanban" class="w-4 h-4 text-zinc-700"></i>
+                <span>Desglose Detallado por Carpeta de Negocio (Centros de Costo)</span>
+              </h3>
+              <p class="text-xs text-zinc-500">Detalle individual de cada proyecto: ingresos, compras directas, gastos operativos, costo neto y utilidad aportada.</p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <a href="/api/export/consolidated-folders" class="erp-btn-outline">
+                <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Exportar Consolidado (Excel)</span>
+              </a>
+              <button onclick="switchTab('folders')" class="erp-btn-dark">
+                Gestionar Carpetas
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-zinc-50 border-b border-zinc-200/80 text-[10.5px] uppercase text-zinc-500 font-semibold tracking-wider">
+                <tr>
+                  <th class="py-3 px-3">Código / Proyecto</th>
+                  <th class="py-3 px-3">Canal / ID Licitación</th>
+                  <th class="py-3 px-3">Cliente / Entidad</th>
+                  <th class="py-3 px-3 text-right">Venta Neta ($)</th>
+                  <th class="py-3 px-3 text-right">Costo Directo ($)</th>
+                  <th class="py-3 px-3 text-right">Gastos Op. ($)</th>
+                  <th class="py-3 px-3 text-right font-bold text-zinc-900">Costo Neto Total ($)</th>
+                  <th class="py-3 px-3 text-right font-bold text-zinc-900">Utilidad Neta ($)</th>
+                  <th class="py-3 px-3 text-center">Margen %</th>
+                  <th class="py-3 px-3 text-center">% Aporte Utilidad</th>
+                  <th class="py-3 px-3 text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-folders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           2. VISTA UNIFICADA: NEGOCIOS & LICITACIONES 360° (PÚBLICO Y PRIVADO)
+           ==================================================================== -->
+      <section id="view-folders" class="tab-view-content space-y-6 hidden fade-in">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-zinc-950">Negocios & Licitaciones 360° (Mercado Público y Privados)</h2>
+            <p class="text-xs text-zinc-500">Visión integral unificada: seguimiento de avance, lector automático de productos y especificaciones técnicas desde documentos, anexos firmables y costeo real.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Filtros por Canal -->
+            <div class="inline-flex bg-zinc-100 p-1 rounded-xl border border-black/[0.06] text-xs">
+              <button onclick="filterFoldersChannel('ALL')" id="btn-filter-ALL" class="folder-filter-btn px-3 py-1.5 rounded-lg font-semibold bg-white text-zinc-900 shadow-sm transition-all">
+                Todos
+              </button>
+              <button onclick="filterFoldersChannel('MERCADO_PUBLICO')" id="btn-filter-MERCADO_PUBLICO" class="folder-filter-btn px-3 py-1.5 rounded-lg font-medium text-zinc-600 hover:text-zinc-900 transition-all flex items-center space-x-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-zinc-500"></i>
+                <span>Mercado Público</span>
+              </button>
+              <button onclick="filterFoldersChannel('PRIVADO')" id="btn-filter-PRIVADO" class="folder-filter-btn px-3 py-1.5 rounded-lg font-medium text-zinc-600 hover:text-zinc-900 transition-all flex items-center space-x-1.5">
+                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-zinc-500"></i>
+                <span>Clientes Privados</span>
+              </button>
+            </div>
+
+            <button onclick="wsLoadSampleBundle()" class="px-3.5 py-2 bg-white hover:bg-zinc-50 text-zinc-800 border border-black/[0.09] text-xs font-semibold rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.02)] flex items-center space-x-1.5 transition-colors" title="Cargar los 6 documentos reales de D:\FINANZIA\documentos ejemplos (REX N° 311, Anexos 4 y 5, Certificados, Solicitud de Compra) y procesarlos con IA">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
+              <span>Cargar Carpeta Ejemplo (REX N° 311)</span>
+            </button>
+
+            <button onclick="openNewFolderModal()" class="px-3.5 py-2 bg-[#141416] hover:bg-zinc-800 text-white text-xs font-semibold rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.12)] flex items-center space-x-1.5 transition-colors">
+              <i data-lucide="folder-plus" class="w-4 h-4"></i>
+              <span>Nuevo Negocio / Licitación</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tarjetas 360° de Negocios (Avance, Productos Extraídos, Documentos y Costeo) -->
+        <div id="folders-360-cards-container" class="grid grid-cols-1 lg:grid-cols-3 gap-6"></div>
+
+        <!-- Tabla Consolidada de Costos, Avance y Rentabilidad -->
+        <div class="bg-white border border-black/[0.08] rounded-[16px] overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+          <div class="p-4 border-b border-zinc-100 flex items-center justify-between bg-zinc-50/70">
+            <div>
+              <h3 class="font-heading font-bold text-sm text-zinc-950">Matriz Consolidada de Negocios, Costo Neto y Márgenes</h3>
+              <p class="text-xs text-zinc-500">Haz clic en cualquier negocio para abrir su expediente 360°, adjuntar documentos o extraer productos con especificaciones técnicas.</p>
+            </div>
+            <a href="/api/export/consolidated-folders" class="erp-btn-outline">
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>Descargar Consolidado Excel</span>
+            </a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-zinc-50 border-b border-zinc-200/80 text-[10.5px] uppercase text-zinc-500 font-semibold tracking-wider">
+                <tr>
+                  <th class="py-3 px-3">Código</th>
+                  <th class="py-3 px-3">Proyecto / Negocio</th>
+                  <th class="py-3 px-3">Cliente</th>
+                  <th class="py-3 px-3">Canal / ID</th>
+                  <th class="py-3 px-3 text-center">Avance</th>
+                  <th class="py-3 px-3 text-right">Venta Neta ($)</th>
+                  <th class="py-3 px-3 text-right">Costo Directo ($)</th>
+                  <th class="py-3 px-3 text-right">Gastos ($)</th>
+                  <th class="py-3 px-3 text-right font-bold text-zinc-900">Costo Neto ($)</th>
+                  <th class="py-3 px-3 text-right font-bold text-emerald-700">Utilidad Neta ($)</th>
+                  <th class="py-3 px-3 text-center">Margen %</th>
+                  <th class="py-3 px-3 text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="folders-table-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ====================================================================
+           2b. ESPACIO DE TRABAJO DE LA CARPETA DE NEGOCIO (TODO EN UN SOLO LUGAR)
+           ==================================================================== -->
+      <section id="view-workspace" class="tab-view-content space-y-5 hidden fade-in">
+        <!-- Encabezado -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 space-y-4">
+          <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-3">
+            <div>
+              <button onclick="closeWorkspace()" class="text-xs text-slate-600 hover:text-blue-700 flex items-center space-x-1 mb-2">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i><span>Volver a Negocios</span>
+              </button>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="ws-code" class="px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 font-bold text-xs font-mono border border-blue-200"></span>
+                <span id="ws-type" class="px-2.5 py-0.5 rounded bg-indigo-50 text-indigo-700 text-xs font-semibold border border-indigo-200"></span>
+                <span id="ws-status" class="px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-xs font-bold"></span>
+              </div>
+              <h2 id="ws-title" class="text-xl font-heading font-bold text-slate-950 mt-1.5"></h2>
+              <p id="ws-client" class="text-xs text-slate-600"></p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="document.getElementById('ws-file-input').click()" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg flex items-center space-x-1.5 shadow">
+                <i data-lucide="upload-cloud" class="w-4 h-4"></i><span>Subir bases / archivos</span>
+              </button>
+              <a id="ws-export-btn" href="#" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg flex items-center space-x-1.5 shadow">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4"></i><span>Excel</span>
+              </a>
+              <button type="button" onclick="deleteCurrentFolderAction()" class="px-3.5 py-2 bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white text-xs font-bold rounded-lg border border-rose-200 flex items-center space-x-1.5 transition-colors shadow" title="Eliminar Carpeta / Negocio">
+                <i data-lucide="trash-2" class="w-4 h-4"></i><span>Eliminar Carpeta</span>
+              </button>
+              <input type="file" id="ws-file-input" multiple accept=".pdf,.docx,.xlsx,.xls,.txt,.csv" class="hidden" onchange="wsUploadFiles(this.files); this.value=''">
+            </div>
+          </div>
+
+          <!-- Avance -->
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="text-slate-600">Avance del negocio</span>
+              <span id="ws-progress-text" class="font-bold text-emerald-700">0%</span>
+            </div>
+            <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+              <div id="ws-progress-bar" class="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-emerald-500 transition-all duration-500" style="width:0%"></div>
+            </div>
+            <div id="ws-stages" class="grid grid-cols-2 md:grid-cols-5 gap-2 pt-3 text-xs"></div>
+          </div>
+
+          <!-- Banner Post-Adjudicación: Semáforo y Alerta de Plazo de Despacho -->
+          <div id="ws-post-award-banner" class="hidden"></div>
+
+          <!-- Banner Foro Inverso y Subsanaciones Post-Cierre -->
+          <div id="ws-clarifications-banner" class="hidden"></div>
+
+          <!-- Zona de carga + progreso del análisis -->
+          <div id="ws-dropzone" class="border-2 border-dashed border-slate-200 rounded-xl p-3 text-center text-xs text-slate-600 hover:border-blue-500/50 transition-colors"
+               ondragover="event.preventDefault(); this.classList.add('border-blue-500')" ondragleave="this.classList.remove('border-blue-500')"
+               ondrop="event.preventDefault(); this.classList.remove('border-blue-500'); wsUploadFiles(event.dataTransfer.files)">
+            Arrastra aquí más archivos (bases técnicas, administrativas, anexos, planillas) · PDF, Word, Excel
+          </div>
+          <div id="ws-jobs" class="space-y-2"></div>
+        </div>
+
+        <!-- Pestañas -->
+        <div class="flex flex-wrap gap-1 border-b border-slate-200" id="ws-tabs"></div>
+        <div id="ws-tab-content" class="space-y-5"></div>
+      </section>
+
+      <!-- ====================================================================
+           5. VISTA SII & FACTURACIÓN (RCV & F29)
+           ==================================================================== -->
+      <section id="view-sii" class="tab-view-content space-y-6 hidden fade-in">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-slate-950">Integración Tributaria (SII) & RCV</h2>
+            <p class="text-xs text-slate-600">Registro de Compras y Ventas, clasificación de DTEs a carpetas, emisión directa y estimación F29.</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="month" id="sii-period" value="2026-10" onchange="siiPeriodChanged()" class="bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 cursor-pointer hover:border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500" title="Seleccionar período fiscal para DTEs y F29">
+            <button onclick="siiSyncView()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold rounded-lg border border-slate-300 flex items-center space-x-1.5">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-blue-700"></i>
+              <span>Sincronizar RCV SII</span>
+            </button>
+            <button id="sii-import-btn" onclick="rcvImportOpen()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold rounded-lg flex items-center space-x-1.5">
+              <i data-lucide="file-up" class="w-3.5 h-3.5"></i>
+              <span>Importar Archivo RCV (CSV / Excel)</span>
+            </button>
+            <button onclick="openEmitDteModal()" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5">
+              <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+              <span>Emitir Factura Electrónica (DTE)</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="commdocs-section"></div>
+
+        <!-- Tarjeta de Proyección Formulario 29 en Vivo -->
+        <div class="bg-gradient-to-r from-slate-50 to-white border border-slate-200 rounded-xl p-5 shadow-lg">
+          <div class="flex items-center justify-between mb-4 border-b border-slate-200 pb-3">
+            <div class="flex items-center space-x-2">
+              <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold text-xs">
+                <i data-lucide="calculator" class="w-4 h-4"></i>
+              </span>
+              <div>
+                <h3 class="font-heading font-bold text-sm text-slate-950">Proyección Tributaria Formulario 29 (F29)</h3>
+                <span class="text-xs text-slate-600">Período Fiscal: <b id="sii-f29-periodo" class="text-slate-900">2026-10</b></span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-slate-600 uppercase font-bold tracking-wider">Total Proyectado a Pagar F29</div>
+              <div id="sii-f29-total-pagar" class="text-xl font-heading font-bold text-amber-700">$0</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-xs">
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div class="text-slate-500">IVA Débito (Ventas)</div>
+              <div id="sii-f29-iva-debito" class="text-sm font-bold text-blue-700 mt-1">$0</div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div class="text-slate-500">IVA Crédito (Compras)</div>
+              <div id="sii-f29-iva-credito" class="text-sm font-bold text-rose-700 mt-1">$0</div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div id="sii-f29-iva-estado" class="text-slate-500">Balance IVA</div>
+              <div id="sii-f29-iva-balance" class="text-sm font-bold text-slate-950 mt-1">$0</div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div class="text-slate-500">Base Ventas Netas</div>
+              <div id="sii-f29-ventas-netas" class="text-sm font-bold text-slate-900 mt-1">$0</div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <div class="text-slate-500">PPM Estimado</div>
+              <div id="sii-f29-ppm-monto" class="text-sm font-bold text-amber-700 mt-1">$0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Semáforo Tributario de Cierre de Mes (Optimización F29) -->
+        <div id="sii-f29-optimization-container"></div>
+
+        <!-- Inteligencia Comercial SII: Top Clientes, Top Proveedores, Alertas SII y Guía Contabilidad desde Cero -->
+        <div id="sii-analytics-container"></div>
+
+        <!-- Tabla RCV DTEs -->
+        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow">
+          <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+            <h3 class="font-bold text-sm text-slate-900">Registro de DTEs Emitidos y Recibidos (RCV)</h3>
+            <span class="text-xs text-slate-600">Asigna cada factura directamente a su Carpeta de Negocio para costeo</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-slate-50 border-b border-slate-200 text-[11px] uppercase text-slate-600 font-semibold tracking-wider">
+                <tr>
+                  <th class="py-3 px-3">Flujo</th>
+                  <th class="py-3 px-3">Folio / Tipo</th>
+                  <th class="py-3 px-3">Emisión</th>
+                  <th class="py-3 px-3">Contraparte</th>
+                  <th class="py-3 px-3 text-right">Neto ($)</th>
+                  <th class="py-3 px-3 text-right">IVA ($)</th>
+                  <th class="py-3 px-3 text-right">Total ($)</th>
+                  <th class="py-3 px-3">Carpeta Asignada</th>
+                  <th class="py-3 px-3 text-center">Conciliado</th>
+                </tr>
+              </thead>
+              <tbody id="sii-dtes-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           6. VISTA BANCOS & CONCILIACIÓN INTELIGENTE
+           ==================================================================== -->
+      <section id="view-banking" class="tab-view-content space-y-6 hidden fade-in">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-slate-950">Bancos, Cartolas & Conciliación Inteligente</h2>
+            <p class="text-xs text-slate-600">Cruce automático entre cartolas bancarias y folios de facturas emitidas o recibidas.</p>
+          </div>
+        </div>
+
+        <!-- Cuentas Corrientes -->
+        <div id="banking-accounts-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+        <!-- Dinero Compacto, Cuadratura 100% SII + Banco, Análisis de Gastos y Estrategias Mensuales -->
+        <div id="banking-intelligent-analysis-container"></div>
+
+        <!-- Control de Deudas Financieras (Tarjetas de Crédito, Créditos, Avances, Líneas — Prevención Mora y DICOM) -->
+        <div id="banking-debts-container"></div>
+
+        <!-- Sugerencias de Conciliación Inteligente -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow">
+          <div class="flex items-center space-x-2 mb-4">
+            <i data-lucide="sparkles" class="w-5 h-5 text-amber-700"></i>
+            <h3 class="font-heading font-bold text-sm text-slate-950">Motor de Conciliación Inteligente (Matches Detectados)</h3>
+          </div>
+          <div id="banking-suggestions-container" class="space-y-3"></div>
+        </div>
+
+        <!-- Dashboard de Vencimientos CxC / CxP -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Cuentas por Cobrar -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-sm text-slate-900 flex items-center space-x-2">
+                <i data-lucide="arrow-down-left" class="w-4 h-4 text-emerald-700"></i>
+                <span>Cuentas por Cobrar (Facturas Emitidas)</span>
+              </h3>
+              <div id="aging-cxc-total" class="font-bold text-emerald-700 text-base">$0</div>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center text-xs">
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-slate-500">Al Día</div>
+                <div id="aging-cxc-aldia" class="font-bold text-slate-900 mt-1">$0</div>
+              </div>
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-amber-700">Próx. 7 días</div>
+                <div id="aging-cxc-7d" class="font-bold text-amber-700 mt-1">$0</div>
+              </div>
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-rose-700">Venc. 1-30d</div>
+                <div id="aging-cxc-30d" class="font-bold text-rose-700 mt-1">$0</div>
+              </div>
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-rose-500 font-bold">+60 días</div>
+                <div id="aging-cxc-60d" class="font-bold text-rose-500 mt-1">$0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuentas por Pagar -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-sm text-slate-900 flex items-center space-x-2">
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-rose-700"></i>
+                <span>Cuentas por Pagar (Facturas Recibidas)</span>
+              </h3>
+              <div id="aging-cxp-total" class="font-bold text-rose-700 text-base">$0</div>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center text-xs">
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-slate-500">Al Día</div>
+                <div id="aging-cxp-aldia" class="font-bold text-slate-900 mt-1">$0</div>
+              </div>
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-amber-700">Próx. 7 días</div>
+                <div id="aging-cxp-7d" class="font-bold text-amber-700 mt-1">$0</div>
+              </div>
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-rose-700">Venc. 1-30d</div>
+                <div id="aging-cxp-30d" class="font-bold text-rose-700 mt-1">$0</div>
+              </div>
+              <div class="bg-slate-50 p-2 rounded border border-slate-200">
+                <div class="text-[10px] text-rose-500 font-bold">+60 días</div>
+                <div id="aging-cxp-60d" class="font-bold text-rose-500 mt-1">$0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla Cartola Bancaria -->
+        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow">
+          <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+            <h3 class="font-bold text-sm text-slate-900">Movimientos de Cartola Bancaria</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-slate-50 border-b border-slate-200 text-[11px] uppercase text-slate-600 font-semibold tracking-wider">
+                <tr>
+                  <th class="py-3 px-3">Fecha</th>
+                  <th class="py-3 px-3">Descripción / Glosa Bancaria</th>
+                  <th class="py-3 px-3">Banco</th>
+                  <th class="py-3 px-3 text-right">Monto ($)</th>
+                  <th class="py-3 px-3 text-right">Saldo ($)</th>
+                  <th class="py-3 px-3 text-center">Estado Conciliado</th>
+                </tr>
+              </thead>
+              <tbody id="banking-transactions-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           7. VISTA CONTROL DE INVENTARIO Y STOCK AUTOMATIZADO + CREADOR DE CATÁLOGOS
+           ==================================================================== -->
+      <section id="view-inventory" class="tab-view-content space-y-6 hidden fade-in">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-slate-950">Stock SKU & Creador de Catálogos</h2>
+            <p class="text-xs text-slate-600">Dos herramientas integradas: (1) Control de bodega conectado a facturas SII y (2) Extractor web de productos para crear catálogos PDF.</p>
+          </div>
+          <!-- Sub-pestañas para dividir claramente ambas funciones en el mismo ítem -->
+          <div class="inline-flex bg-white p-1 rounded-xl border border-slate-200 text-xs">
+            <button id="inv-subtab-stock" onclick="switchInventorySubTab('stock')" class="px-3.5 py-2 rounded-lg font-bold bg-blue-600 text-white flex items-center space-x-1.5 transition-all">
+              <i data-lucide="boxes" class="w-4 h-4"></i>
+              <span>1. Control de Stock & SKU (SII)</span>
+            </button>
+            <button id="inv-subtab-catalog" onclick="switchInventorySubTab('catalog')" class="px-3.5 py-2 rounded-lg font-semibold text-slate-600 hover:text-slate-900 flex items-center space-x-1.5 transition-all">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>2. Creador de Catálogos & Extractor Web</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 6A: CONTROL DE STOCK & SKU (APOYADO EN LECTURA SII + MANUAL) -->
+        <div id="inv-subpanel-stock" class="space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-white border border-slate-200 rounded-xl p-4">
+            <div class="text-xs text-slate-700">
+              <span class="font-bold text-emerald-700">Sincronización inteligente SII + Manual:</span> Alimenta tu stock automáticamente desde las facturas de compra recibidas en el SII y los ítems de tus carpetas de negocio, o agrega SKUs manualmente.
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="syncInventoryFromSii()" class="px-3.5 py-1.5 bg-white hover:bg-zinc-50 text-zinc-800 border border-black/[0.09] text-xs font-semibold rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.02)] flex items-center space-x-1.5 transition-colors">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-zinc-500"></i>
+                <span>Sincronizar Stock desde Facturas SII</span>
+              </button>
+              <a href="/api/export/inventory" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold rounded-lg border border-slate-300 flex items-center space-x-1.5">
+                <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-700"></i>
+                <span>Exportar Catálogo Excel</span>
+              </a>
+              <button onclick="openNewProductModal()" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5">
+                <i data-lucide="package-plus" class="w-3.5 h-3.5"></i>
+                <span>Nuevo Producto (Auto SKU)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Métricas de Stock -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white border border-slate-200 p-4 rounded-xl">
+              <div class="text-xs text-slate-600">Artículos en Catálogo</div>
+              <div id="inv-total-articulos" class="text-xl font-bold font-heading text-slate-950 mt-1">0</div>
+            </div>
+            <div class="bg-white border border-slate-200 p-4 rounded-xl">
+              <div class="text-xs text-slate-600">Stock Físico Total</div>
+              <div id="inv-unidades-fisicas" class="text-xl font-bold font-heading text-blue-700 mt-1">0</div>
+            </div>
+            <div class="bg-white border border-slate-200 p-4 rounded-xl">
+              <div class="text-xs text-slate-600">Stock Reservado (Cotizaciones)</div>
+              <div id="inv-unidades-reservadas" class="text-xl font-bold font-heading text-amber-700 mt-1">0</div>
+            </div>
+            <div class="bg-white border border-slate-200 p-4 rounded-xl">
+              <div class="text-xs text-slate-600">Stock Disponible Neto</div>
+              <div id="inv-unidades-libres" class="text-xl font-bold font-heading text-emerald-700 mt-1">0</div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead class="bg-slate-50 border-b border-slate-200 text-[11px] uppercase text-slate-600 font-semibold tracking-wider">
+                  <tr>
+                    <th class="py-3 px-3">SKU</th>
+                    <th class="py-3 px-3">Producto</th>
+                    <th class="py-3 px-3">Categoría</th>
+                    <th class="py-3 px-3 text-right">Costo Unitario ($)</th>
+                    <th class="py-3 px-3 text-right">Precio Venta ($)</th>
+                    <th class="py-3 px-3 text-center">Físico</th>
+                    <th class="py-3 px-3 text-center">Reservado</th>
+                    <th class="py-3 px-3 text-center font-bold text-emerald-700">Disponible</th>
+                    <th class="py-3 px-3 text-center">Mínimo</th>
+                    <th class="py-3 px-3 text-center">Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 6B: CREADOR DE CATÁLOGOS & EXTRACTOR DE LINKS WEB -->
+        <div id="inv-subpanel-catalog" class="space-y-5 hidden">
+          <div id="catalog-section"></div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           8. VISTA MULTI-EMPRESA & CONFIGURACIÓN (ORGANIZADA POR SUB-PESTAÑAS)
+           ==================================================================== -->
+      <section id="view-companies" class="tab-view-content space-y-6 hidden fade-in">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-slate-950">Multi-Empresa & Centro de Configuración</h2>
+            <p class="text-xs text-slate-600">Sube y administra toda la información de cada empresa simultáneamente: razones sociales, SII/Banco, bóveda legal e IA.</p>
+          </div>
+          <div class="inline-flex flex-wrap bg-zinc-100 p-1 rounded-xl border border-black/[0.06] text-xs gap-1">
+            <button id="comp-subtab-empresas" onclick="switchCompaniesSubTab('empresas')" class="px-3 py-1.5 rounded-lg font-semibold bg-white text-zinc-900 shadow-sm transition-all flex items-center space-x-1.5">
+              <i data-lucide="building-2" class="w-3.5 h-3.5 text-zinc-600"></i>
+              <span>Empresas Simultáneas</span>
+            </button>
+            <button id="comp-subtab-integraciones" onclick="switchCompaniesSubTab('integraciones')" class="px-3 py-1.5 rounded-lg font-medium text-zinc-600 hover:text-zinc-900 transition-all flex items-center space-x-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-zinc-500"></i>
+              <span>SII, Banco & Correo</span>
+            </button>
+            <button id="comp-subtab-boveda" onclick="switchCompaniesSubTab('boveda')" class="px-3 py-1.5 rounded-lg font-medium text-zinc-600 hover:text-zinc-900 transition-all flex items-center space-x-1.5">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-500"></i>
+              <span>Bóveda Documental</span>
+            </button>
+            <button id="comp-subtab-ia" onclick="switchCompaniesSubTab('ia')" class="px-3 py-1.5 rounded-lg font-medium text-zinc-600 hover:text-zinc-900 transition-all flex items-center space-x-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-zinc-500"></i>
+              <span>Motor IA & Firma</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 7A: RAZONES SOCIALES & GESTIÓN SIMULTÁNEA -->
+        <div id="comp-subpanel-empresas" class="space-y-5">
+          <div id="companies-simultaneous-bar" class="bg-white border border-slate-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+            <div class="text-xs text-slate-700">
+              <span class="font-bold text-blue-700">Vista Simultánea Multi-Empresa:</span> Alterna en 1 clic entre todas las empresas registradas o crea una nueva razón social para subir su documentación.
+            </div>
+            <button onclick="startWizard()" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5">
+              <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+              <span>+ Agregar Nueva Empresa</span>
+            </button>
+          </div>
+          <div id="companies-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+
+        <!-- SUB-PANEL 7B: CONEXIONES SII, BANCO FINTOC & CORREO -->
+        <div id="comp-subpanel-integraciones" class="space-y-6 hidden">
+          <div id="integrations-section" class="space-y-6"></div>
+          <div id="email-section"></div>
+        </div>
+
+        <!-- SUB-PANEL 7C: BÓVEDA CENTRAL DE DOCUMENTACIÓN LABORAL Y LEGAL VIGENTE -->
+        <div id="comp-subpanel-boveda" class="space-y-5 hidden">
+          <div id="legal-vault-container"></div>
+        </div>
+
+        <!-- SUB-PANEL 7D: CONFIGURACIÓN DE IA Y FIRMA DEL REPRESENTANTE LEGAL -->
+        <div id="comp-subpanel-ia" class="space-y-6 hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-3 text-xs">
+              <h3 class="font-heading font-bold text-sm text-slate-950 flex items-center space-x-2">
+                <i data-lucide="sparkles" class="w-4 h-4 text-amber-700"></i><span>Motor de IA para leer bases y documentos</span>
+              </h3>
+              <p class="text-slate-600">Recomendado: <b>Gemini</b> (lee texto, imágenes, firmas y PDFs escaneados). Sin IA la app usa reglas locales y no puede leer imágenes. Obtén una clave gratis en aistudio.google.com/apikey.</p>
+              <div id="ai-status-badge" class="inline-block px-2.5 py-1 rounded-full font-bold bg-slate-100 text-slate-700">Cargando…</div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block font-semibold text-slate-700 mb-1">Proveedor</label>
+                  <select id="ai-provider" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+                    <option value="none">Reglas locales (sin IA)</option>
+                    <option value="gemini">Google Gemini (recomendado)</option>
+                    <option value="anthropic">Anthropic Claude</option>
+                    <option value="openai">OpenAI / compatible (Ollama, LM Studio)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block font-semibold text-slate-700 mb-1">Modelo (opcional)</label>
+                  <input id="ai-model" type="text" placeholder="gemini-2.5-flash" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+                </div>
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">API Key</label>
+                <input id="ai-key" type="password" placeholder="Pega aquí tu clave" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-mono">
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">URL base (sólo OpenAI-compatible)</label>
+                <input id="ai-base-url" type="text" placeholder="http://localhost:11434/v1" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-mono">
+              </div>
+              <button onclick="saveAiSettings()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold">Guardar configuración de IA</button>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-3 text-xs">
+              <h3 class="font-heading font-bold text-sm text-slate-950 flex items-center space-x-2">
+                <i data-lucide="pen-tool" class="w-4 h-4 text-blue-700"></i><span>Firma guardada del representante legal</span>
+              </h3>
+              <p class="text-slate-600">Se guarda una vez y se estampa en los anexos y cotizaciones de todas las carpetas.</p>
+              <div class="grid grid-cols-2 gap-3">
+                <input id="signer-name" type="text" placeholder="Nombre del firmante" class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+                <input id="signer-rut" type="text" placeholder="RUT firmante" class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-mono">
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-slate-700">Dibuja tu firma</span>
+                <div class="space-x-3">
+                  <button type="button" onclick="document.getElementById('signer-file').click()" class="text-slate-600 hover:text-blue-700">Subir imagen de firma</button>
+                  <button type="button" onclick="clearSignatureCanvas('profile-signature-canvas')" class="text-slate-600 hover:text-rose-700">Limpiar</button>
+                </div>
+                <input type="file" id="signer-file" accept="image/*" class="hidden" onchange="loadSignerImage(this.files[0])">
+              </div>
+              <div class="signature-canvas-wrapper"><canvas id="profile-signature-canvas" class="signature-canvas"></canvas></div>
+              <div id="signer-status" class="text-[11px] text-slate-600"></div>
+              <button onclick="saveSignerProfile()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold">Guardar firma</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. VISTA SEGUIMIENTO DE COTIZACIONES (PIPELINE COMERCIAL)
+           ==================================================================== -->
+      <section id="view-pipeline" class="tab-view-content space-y-5 hidden fade-in"></section>
+
+      <!-- ====================================================================
+           9. VISTA GESTIÓN DE USUARIOS Y ACCESOS MULTI-EMPRESA
+           ==================================================================== -->
+      <section id="view-users" class="tab-view-content space-y-5 hidden fade-in"></section>
+
+    </div>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       MODALES Y VENTANAS FLOTANTES
+       ======================================================================== -->
+
+  <!-- 1. Modal Crear Carpeta de Negocio -->
+  <div id="new-folder-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h3 class="font-heading font-bold text-lg text-slate-950">Nueva Carpeta de Negocio (Centro de Costos)</h3>
+        <button onclick="closeNewFolderModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="new-folder-form" onsubmit="handleCreateFolder(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Nombre / Título del Proyecto *</label>
+          <input type="text" name="title" required placeholder="Ej: Renovación Equipamiento y Periféricos" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Cliente / Entidad Pública *</label>
+            <input type="text" name="client_name" required placeholder="Ej: Hospital Clínico San Borja" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">RUT Cliente *</label>
+            <input type="text" name="client_rut" required placeholder="Ej: 61.606.000-8" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950 font-mono">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Tipo de Negocio</label>
+            <select name="type" class="w-full bg-white border border-black/[0.1] rounded-[10px] px-3 py-2 text-zinc-900 font-medium">
+              <option value="MERCADO_PUBLICO">Mercado Público (Licitación / Compra Ágil)</option>
+              <option value="PRIVADO">Cliente Privado (B2B / Corporativo)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">ID Licitación (si aplica)</label>
+            <input type="text" name="tender_id" placeholder="Ej: 1245-22-LR26" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950 font-mono">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Presupuesto Referencial ($CLP)</label>
+            <input type="number" name="budget_amount" step="100000" placeholder="18500000" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Margen Objetivo (%)</label>
+            <input type="number" name="target_margin_pct" step="0.5" value="25" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Observaciones / Alcance</label>
+          <textarea name="notes" rows="2" placeholder="Detalles de la adjudicación, condiciones de entrega..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950"></textarea>
+        </div>
+
+        <div id="new-folder-dropzone" class="border-2 border-dashed border-blue-200 rounded-xl p-4 text-center bg-blue-50 cursor-pointer hover:bg-blue-100 transition-colors"
+             onclick="document.getElementById('new-folder-files').click()"
+             ondragover="event.preventDefault(); this.classList.add('bg-blue-500/20')" ondragleave="this.classList.remove('bg-blue-500/20')"
+             ondrop="handleNewFolderDrop(event)">
+          <div class="text-sm font-bold text-blue-700">Arrastra aquí las bases, anexos o especificaciones (PDF, Word, Excel)</div>
+          <div class="text-[11px] text-slate-600 mt-1">La IA los leerá y configurará la carpeta: productos, cotizador, checklist, firmas, hitos y riesgos.</div>
+          <div id="new-folder-files-list" class="text-xs text-emerald-700 mt-2 font-semibold"></div>
+          <input type="file" id="new-folder-files" multiple accept=".pdf,.docx,.xlsx,.xls,.txt,.csv" class="hidden" onchange="handleNewFolderFilesPicked(this.files)">
+        </div>
+
+        <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+          <button type="button" onclick="closeNewFolderModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold">Cancelar</button>
+          <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-md">Crear Carpeta y Analizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Modal Gestor Documental Licitaciones & Firma Digital de Anexos -->
+  <div id="tender-docs-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-3xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h3 id="tender-doc-modal-header" class="font-heading font-bold text-base text-slate-950"></h3>
+        <button onclick="closeTenderDocsModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="tender-doc-list" class="space-y-3 max-h-[70vh] overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <!-- 4. Modal Editor Interactivo de Anexos & Canvas de Firma -->
+  <div id="anexo-editor-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-2xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="font-heading font-bold text-base text-slate-950">Editor Documental Interactivo</h3>
+          <p id="anexo-doc-title" class="text-xs text-blue-700 font-semibold"></p>
+        </div>
+        <button onclick="closeAnexoEditorModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <!-- Formulario Dinámico de Anexo -->
+      <div id="anexo-form-fields" class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200"></div>
+
+      <!-- Canvas de Firma Digital y Rúbrica -->
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="text-xs font-bold text-slate-900 flex items-center space-x-1.5">
+            <i data-lucide="pen-tool" class="w-3.5 h-3.5 text-blue-700"></i>
+            <span>Firma Digital & Rúbrica del Representante Legal</span>
+          </label>
+          <button type="button" onclick="clearSignatureCanvas('anexo-signature-canvas')" class="text-[11px] text-slate-600 hover:text-rose-700">
+            Limpiar Firma
+          </button>
+        </div>
+        <div class="signature-canvas-wrapper">
+          <canvas id="anexo-signature-canvas" class="signature-canvas"></canvas>
+        </div>
+        <p class="text-[10px] text-slate-500 mt-1 italic">Dibuja con el cursor o pantalla táctil la firma del representante autorizado.</p>
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+        <button type="button" onclick="closeAnexoEditorModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">Cancelar</button>
+        <button type="button" onclick="signAnnexWithSaved()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow flex items-center space-x-1.5">
+          <i data-lucide="badge-check" class="w-4 h-4"></i>
+          <span>Firmar con mi firma guardada</span>
+        </button>
+        <button type="button" onclick="saveAndSignAnexo()" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow flex items-center space-x-1.5">
+          <i data-lucide="check-check" class="w-4 h-4"></i>
+          <span>Estampar Firma y Guardar Documento</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Declaración de Ausencia de Conflicto de Interés e Inhabilidades (Mercado Público / Ley 19.886) -->
+  <div id="ws-conflict-modal" class="fixed inset-0 bg-slate-50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-2xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center space-x-2">
+          <span class="p-2 bg-emerald-50 text-emerald-700 rounded-lg"><i data-lucide="shield-check" class="w-5 h-5"></i></span>
+          <div>
+            <h3 class="font-heading font-bold text-base text-slate-950">Declaración Jurada de Inhabilidades y Ausencia de Conflicto de Interés</h3>
+            <p class="text-xs text-emerald-700 font-semibold">Ley N° 19.886 art. 4° · Requisito Habilitante Oficial ChileCompra</p>
+          </div>
+        </div>
+        <button onclick="wsCloseConflictModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-700 space-y-3">
+        <p class="font-medium text-slate-900">
+          En cumplimiento con la normativa de compras públicas de la República de Chile (Ley N° 19.886), el compareciente declara bajo juramento:
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-start gap-2.5 cursor-pointer text-slate-700">
+            <input type="checkbox" checked disabled class="mt-0.5 rounded text-emerald-500 focus:ring-emerald-500 bg-white border-slate-300">
+            <span><strong>Sin condenas laborales:</strong> La sociedad oferente y sus directivos no han sido condenados por prácticas antisindicales ni infracción a derechos fundamentales dentro de los dos años anteriores a la fecha de la oferta.</span>
+          </label>
+          <label class="flex items-start gap-2.5 cursor-pointer text-slate-700">
+            <input type="checkbox" checked disabled class="mt-0.5 rounded text-emerald-500 focus:ring-emerald-500 bg-white border-slate-300">
+            <span><strong>Ausencia de conflicto de interés:</strong> No posee calidad de cónyuge, conviviente civil ni pariente hasta el tercer grado de consanguinidad o segundo de afinidad con autoridades o funcionarios directivos del organismo licitante.</span>
+          </label>
+          <label class="flex items-start gap-2.5 cursor-pointer text-slate-700">
+            <input type="checkbox" checked disabled class="mt-0.5 rounded text-emerald-500 focus:ring-emerald-500 bg-white border-slate-300">
+            <span><strong>Habilidad ChileCompra:</strong> La empresa oferente se encuentra debidamente inscrita y plenamente hábil para ofertar y contratar en el Registro Oficial de Proveedores del Estado.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Nombre Representante Legal</label>
+          <input id="conflict-signer-name" type="text" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-950" placeholder="Nombre completo">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">RUT Representante Legal</label>
+          <input id="conflict-signer-rut" type="text" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-950" placeholder="12.345.678-9">
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+        <button type="button" onclick="wsCloseConflictModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">Cancelar</button>
+        <button type="button" onclick="wsConfirmConflictDeclaration()" class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-lg text-xs font-bold shadow-lg flex items-center space-x-2">
+          <i data-lucide="check-circle" class="w-4 h-4"></i>
+          <span>Confirmar Declaración y Estampar Firma</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Agregar Requisito Manual de Checklist -->
+  <div id="ws-add-chk-modal" class="fixed inset-0 bg-slate-50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-md p-6 shadow-2xl space-y-4 text-xs">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h3 class="font-heading font-bold text-base text-slate-950">Agregar Requisito o Antecedente</h3>
+        <button onclick="wsCloseAddChecklistModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Columna de Mercado Público</label>
+          <select id="new-chk-category" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+            <option value="ADMINISTRATIVO">1. Administrativos (Patente, Vigencia, Estatutos, etc.)</option>
+            <option value="TECNICO">2. Técnicos (Fichas, Normas, Certificaciones, etc.)</option>
+            <option value="ECONOMICO">3. Económicos (Anexo 3, Precios unitarios, etc.)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Nombre del Requisito / Antecedente *</label>
+          <input id="new-chk-title" type="text" placeholder="Ej: Certificado de Calidad ISO 9001" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Detalle o Instrucciones (Opcional)</label>
+          <textarea id="new-chk-detail" rows="2" placeholder="Especificaciones adicionales..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+        <button type="button" onclick="wsCloseAddChecklistModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold">Cancelar</button>
+        <button type="button" onclick="wsSubmitAddChecklist()" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow">Agregar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Modal Nueva Cotización Visual -->
+  <div id="new-quotation-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-5xl max-h-[92vh] flex flex-col shadow-2xl">
+      <div class="p-6 border-b border-slate-200 flex items-center justify-between shrink-0">
+        <h3 class="font-heading font-bold text-lg text-slate-950">Constructor de Cotizaciones (Pública / Privada)</h3>
+        <button onclick="closeNewQuotationModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="new-quotation-form" onsubmit="handleSaveQuotation(event)" class="p-6 overflow-y-auto space-y-6 text-xs flex-1">
+        <!-- Metadatos Cliente y Carpeta -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Cliente / Razón Social *</label>
+            <input type="text" name="client_name" required placeholder="Nombre del cliente" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">RUT Cliente *</label>
+            <input type="text" name="client_rut" required placeholder="Ej: 76.842.159-4" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950 font-mono">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Carpeta de Negocio</label>
+            <select name="folder_id" id="quote-folder-select" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-blue-700 font-semibold"></select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Fecha Emisión</label>
+            <input type="date" name="date" id="quote-date" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Días de Validez</label>
+            <input type="number" name="validity_days" value="15" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Tipo de Cotización</label>
+            <select name="type" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950 font-semibold">
+              <option value="MERCADO_PUBLICO">Mercado Público</option>
+              <option value="PRIVADO">Venta Privada</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">ID Licitación (si aplica)</label>
+            <input type="text" name="tender_id" placeholder="1245-22-LR26" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Condiciones de Pago</label>
+            <input type="text" name="payment_terms" value="30 días contra factura" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Plazo de Entrega</label>
+            <input type="text" name="delivery_time" value="5 días hábiles" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-950">
+          </div>
+          <div class="hidden">
+            <input type="text" name="client_address">
+            <input type="text" name="client_contact">
+            <input type="text" name="client_email">
+            <input type="text" name="status" value="ACEPTADA">
+          </div>
+        </div>
+
+        <!-- Tabla de Ítems de Cotización -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-bold text-sm text-slate-950">Ítems, Costos y Precios de Venta</h4>
+            <button type="button" onclick="addQuotationItemRow()" class="px-3 py-1.5 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-lg font-semibold flex items-center space-x-1">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Agregar Producto / Servicio</span>
+            </button>
+          </div>
+          <table class="w-full text-left bg-slate-50 rounded-xl border border-slate-200">
+            <thead>
+              <tr class="text-[10px] text-slate-500 uppercase border-b border-slate-200">
+                <th class="py-2 px-2">SKU</th>
+                <th class="py-2 px-2">Descripción</th>
+                <th class="py-2 px-2 text-right">Cant.</th>
+                <th class="py-2 px-2 text-right">Costo Unit.</th>
+                <th class="py-2 px-2 text-right">Precio Venta</th>
+                <th class="py-2 px-2 text-center">Margen %</th>
+                <th class="py-2 px-2 text-right">Subtotal ($)</th>
+                <th class="py-2 px-2 text-center"></th>
+              </tr>
+            </thead>
+            <tbody id="quote-items-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Totales de la Cotización -->
+        <div class="flex justify-end">
+          <div class="w-72 bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
+            <div class="flex justify-between text-slate-600">
+              <span>Subtotal Neto:</span>
+              <span id="quote-neto-calc" class="font-bold text-slate-900">$0</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>IVA (19%):</span>
+              <span id="quote-iva-calc" class="font-bold text-slate-900">$0</span>
+            </div>
+            <div class="flex justify-between text-base font-bold text-emerald-700 border-t border-slate-200 pt-2">
+              <span>Total Cotización:</span>
+              <span id="quote-total-calc">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notas y Firma en Canvas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Notas Comerciales / Garantías</label>
+            <textarea name="notes" rows="6" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-950" placeholder="Valores en CLP. Validez según bases técnicas..."></textarea>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="font-semibold text-slate-700">Firma Digital del Emisor</label>
+              <button type="button" onclick="clearSignatureCanvas('signature-canvas')" class="text-[11px] text-slate-600 hover:text-rose-700">Limpiar</button>
+            </div>
+            <div class="signature-canvas-wrapper">
+              <canvas id="signature-canvas" class="signature-canvas"></canvas>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+              <input type="text" name="signer_name" placeholder="Nombre firmante" value="Carlos Mendoza Silva" class="bg-white border border-slate-300 rounded p-1.5 text-slate-950 text-xs">
+              <input type="text" name="signer_rut" placeholder="RUT firmante" value="14.892.341-2" class="bg-white border border-slate-300 rounded p-1.5 text-slate-950 text-xs font-mono">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+          <button type="button" onclick="closeNewQuotationModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold">Cancelar</button>
+          <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold shadow-md">Guardar y Reservar Stock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Modal Vista / Impresión de Cotización (Hoja Institucional) -->
+  <div id="view-quotation-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white text-slate-900 rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 bg-slate-100 border-b border-slate-200 flex items-center justify-between shrink-0 no-print">
+        <h4 class="font-bold text-sm text-slate-800">Vista Institucional de Cotización</h4>
+        <div class="flex items-center space-x-2">
+          <button onclick="printQuotation()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg flex items-center space-x-1.5 shadow">
+            <i data-lucide="printer" class="w-4 h-4"></i>
+            <span>Imprimir / Exportar PDF</span>
+          </button>
+          <button onclick="closeViewQuotationModal()" class="p-1.5 text-slate-500 hover:text-slate-800"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+      </div>
+
+      <div id="quotation-print-modal" class="p-8 overflow-y-auto space-y-6 text-xs text-slate-800">
+        <!-- Membrete Corporativo -->
+        <div class="flex justify-between items-start border-b-2 border-slate-800 pb-4">
+          <div>
+            <h2 id="view-q-company-name" class="text-xl font-heading font-extrabold text-blue-900"></h2>
+            <div id="view-q-company-rut" class="text-xs font-mono font-bold text-slate-700 mt-0.5"></div>
+            <div id="view-q-company-giro" class="text-xs text-slate-600"></div>
+            <div id="view-q-company-address" class="text-xs text-slate-600"></div>
+          </div>
+          <div class="text-right">
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 font-bold rounded text-xs uppercase tracking-wider">COTIZACIÓN FORMAL</span>
+            <div id="view-q-folio" class="text-lg font-mono font-extrabold text-slate-900 mt-2"></div>
+            <div class="text-xs text-slate-500 mt-1">Fecha: <span id="view-q-date"></span></div>
+          </div>
+        </div>
+
+        <!-- Ficha del Cliente -->
+        <div class="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Datos del Cliente:</span>
+            <div id="view-q-client-name" class="font-bold text-sm text-slate-900"></div>
+            <div id="view-q-client-rut" class="font-mono text-xs text-slate-700"></div>
+            <div id="view-q-client-contact" class="text-xs text-slate-600"></div>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Condiciones de Venta:</span>
+            <div class="text-xs text-slate-700 mt-1">Validez: <b id="view-q-validity"></b></div>
+            <div class="text-xs text-slate-700">Forma de Pago: <b id="view-q-payment"></b></div>
+            <div class="text-xs text-slate-700">Plazo Entrega: <b id="view-q-delivery"></b></div>
+          </div>
+        </div>
+
+        <!-- Tabla de Productos -->
+        <table class="w-full text-left border border-slate-200 rounded-lg overflow-hidden">
+          <thead class="bg-slate-100 text-[11px] uppercase text-slate-600 font-bold border-b border-slate-200">
+            <tr>
+              <th class="py-2.5 px-3">SKU</th>
+              <th class="py-2.5 px-3">Descripción</th>
+              <th class="py-2.5 px-3 text-center">Cantidad</th>
+              <th class="py-2.5 px-3 text-right">Precio Unitario ($)</th>
+              <th class="py-2.5 px-3 text-right">Total ($)</th>
+            </tr>
+          </thead>
+          <tbody id="view-q-items-tbody"></tbody>
+        </table>
+
+        <!-- Totales -->
+        <div class="flex justify-end">
+          <div class="w-64 space-y-1.5 text-xs text-slate-700">
+            <div class="flex justify-between">
+              <span>Total Neto:</span>
+              <span id="view-q-neto" class="font-bold text-slate-900"></span>
+            </div>
+            <div class="flex justify-between">
+              <span>IVA (19%):</span>
+              <span id="view-q-iva" class="font-bold text-slate-900"></span>
+            </div>
+            <div class="flex justify-between text-base font-bold text-blue-900 border-t-2 border-slate-800 pt-1.5">
+              <span>Total a Pagar:</span>
+              <span id="view-q-total"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notas y Firma Estampada -->
+        <div class="grid grid-cols-2 gap-6 pt-4 border-t border-slate-200 items-end">
+          <div>
+            <h5 class="text-xs font-bold text-slate-800 mb-1">Observaciones y Condiciones:</h5>
+            <p id="view-q-notes" class="text-xs text-slate-600 italic leading-relaxed"></p>
+          </div>
+          <div class="text-center">
+            <img id="view-q-signature-img" class="h-20 mx-auto object-contain mb-1" src="" alt="Firma Digital">
+            <div id="view-q-signer-name" class="font-bold text-xs text-slate-900"></div>
+            <div id="view-q-signer-rut" class="text-[11px] text-slate-600 font-mono"></div>
+            <div class="text-[10px] text-slate-400 uppercase">Representante Legal / Oferente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Modal Emisión Directa de DTE (Factura Electrónica SII) -->
+  <div id="emit-dte-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h3 class="font-heading font-bold text-base text-slate-950 flex items-center space-x-2">
+          <i data-lucide="receipt" class="w-4 h-4 text-blue-700"></i>
+          <span>Emisión Directa de Factura Electrónica (DTE)</span>
+        </h3>
+        <button onclick="closeEmitDteModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="emit-dte-form" onsubmit="handleEmitDte(event)" class="space-y-3">
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Flujo / Dirección</label>
+            <select name="direction" id="emit-dte-direction" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-semibold">
+              <option value="EMITIDO">Venta / Emitido (Salida)</option>
+              <option value="RECIBIDO">Compra / Recibido (Entrada)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Tipo de DTE</label>
+            <select name="dte_type" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-semibold">
+              <option value="33">33 - Factura Electrónica (Afecta)</option>
+              <option value="34">34 - Factura No Afecta / Exenta</option>
+              <option value="52">52 - Guía de Despacho Electrónica</option>
+              <option value="61">61 - Nota de Crédito Electrónica</option>
+              <option value="56">56 - Nota de Débito Electrónica</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Folio DTE</label>
+            <input type="number" name="folio" id="emit-dte-folio" required class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-mono font-bold">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Razón Social Cliente / Proveedor Contraparte *</label>
+          <input type="text" name="razon_social_receptor" required placeholder="Hospital Clínico o Empresa SpA" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">RUT Contraparte *</label>
+            <input type="text" name="rut_receptor" required placeholder="61.606.000-8" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-mono">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Carpeta de Negocio</label>
+            <select name="folder_id" id="emit-dte-folder" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-blue-700 font-semibold"></select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Forma de Pago</label>
+            <select name="payment_method" id="emit-dte-payment" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-emerald-700 font-semibold">
+              <option value="CREDITO_DIRECTO">Crédito (30 días)</option>
+              <option value="CONTADO">Al Contado</option>
+              <option value="CHEQUE">Con Cheque</option>
+              <option value="TRANSFERENCIA_EXTERNA">Transferencia</option>
+              <option value="TARJETA_COMERCIAL">Tarjeta / Línea</option>
+              <option value="EFECTIVO">Efectivo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Enlace con Stock SKU (Control de lo que entra y sale de la empresa) -->
+        <div class="grid grid-cols-3 gap-3 bg-blue-50 p-2.5 rounded-xl border border-blue-200">
+          <div class="col-span-2">
+            <label class="block font-semibold text-blue-700 mb-1">Vincular con Stock SKU (Opcional — descuenta o ingresa unidades)</label>
+            <select id="emit-dte-sku" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+              <option value="">— Sin movimiento de bodega —</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-blue-700 mb-1">Cantidad SKU</label>
+            <input type="number" id="emit-dte-qty" value="1" min="1" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-bold">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Fecha Emisión</label>
+            <input type="date" name="emission_date" id="emit-dte-date" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Fecha Vencimiento</label>
+            <input type="date" name="expiration_date" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Neto ($)</label>
+            <input type="number" name="neto" id="emit-dte-neto" oninput="updateEmitDteTotals()" required placeholder="5000000" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-slate-950 font-bold">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">IVA 19% ($)</label>
+            <input type="number" name="iva" id="emit-dte-iva" readonly class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-slate-600 font-bold">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Total ($)</label>
+            <input type="number" name="total" id="emit-dte-total" readonly class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-emerald-700 font-bold">
+          </div>
+        </div>
+
+        <!-- Timbre Electrónico Simulado -->
+        <div class="p-3 bg-white text-slate-900 rounded-lg flex items-center justify-between border border-slate-300">
+          <div class="text-[10px]">
+            <div class="font-bold">TIMBRE ELECTRÓNICO SII</div>
+            <div>Res. 80 de 2014 - Verifique documento</div>
+          </div>
+          <div class="font-mono text-xs tracking-widest bg-slate-200 px-2 py-1 rounded">
+            ||||| | |||| ||| |||||||
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+          <button type="button" onclick="closeEmitDteModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded font-semibold">Cancelar</button>
+          <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-bold shadow">Emitir y Transmitir al SII</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. Modal Nuevo Producto / Catálogo -->
+  <div id="new-product-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4 text-xs">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h3 class="font-heading font-bold text-base text-slate-950">Nuevo Producto (Generador SKU Automático)</h3>
+        <button onclick="closeNewProductModal()" class="text-slate-600 hover:text-slate-950"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="new-product-form" onsubmit="handleCreateProduct(event)" class="space-y-3">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Nombre del Producto / Servicio *</label>
+          <input type="text" name="name" required placeholder="Ej: Router Empresarial VPN Gigabit" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Categoría</label>
+            <input type="text" name="category" placeholder="Redes, Servidores, etc." class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Unidad de Medida</label>
+            <input type="text" name="unit" value="UND" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Costo Unitario ($)</label>
+            <input type="number" step="1000" name="unit_cost" required placeholder="450000" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-amber-700 font-bold">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Precio Venta ($)</label>
+            <input type="number" step="1000" name="unit_price" required placeholder="680000" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950 font-bold">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Stock Físico Inicial</label>
+            <input type="number" name="stock_physical" value="10" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Stock Mínimo (Alerta)</label>
+            <input type="number" name="stock_min" value="3" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Descripción / Ficha Técnica</label>
+          <textarea name="description" rows="2" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-950" placeholder="Especificaciones técnicas..."></textarea>
+        </div>
+
+        <div class="flex justify-end space-x-3 pt-3 border-t border-slate-200">
+          <button type="button" onclick="closeNewProductModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded font-semibold">Cancelar</button>
+          <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-bold shadow">Crear Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/app.js?v=20261114b"></script>
+  <script src="/static/js/workspace.js?v=20261114b"></script>
+  <script src="/static/js/platform.js?v=20261114b"></script>
+  <script src="/static/js/onboarding.js?v=20261114b"></script>
+  <script src="/static/js/integrations.js?v=20261114b"></script>
+  <script src="/static/vendor/pdf.min.js?v=20261114b"></script>
+  <script src="/static/js/docviewer.js?v=20261114b"></script>
+  <script src="/static/js/catalog_ext.js?v=20261114b"></script>
+  <script src="/static/js/pipeline.js?v=20261114b"></script>
+  <script src="/static/js/settings_ext.js?v=20261114b"></script>
+  <script src="/static/js/payments.js?v=20261114b"></script>
+  <script src="/static/js/rcv.js?v=20261114b"></script>
+</body>
+</html>

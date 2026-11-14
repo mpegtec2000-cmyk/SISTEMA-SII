@@ -1,0 +1,952 @@
+[2026-10-08 15:23:39] LOGIN CAutInicio.cgi -> HTTP 200 text/html
+<!DOCTYPE html>
+          <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>AutenticaciÃ³n</title>
+  <script type="text/javascript" src="/AUT2000/js/loadBarra.js"></script>
+  
+ <script type="text/javascript" src="/AUT2000/js/AutPrint.js"></script>
+</head>
+<body><script type="text/javascript">
+        var expira = new Date();
+        var ult = new Date();
+        fixDate(expira);
+        fixDate(ult);
+          expira.setTime(expira.getTime() + 7200000);
+          
+                        setCookie('NETSCAPE_LIVEWIRE.locexp',expira.toGMTString(), null, '/', '.sii.cl', 'secure');
+            
+ 		location.replace('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+           	//sendMethodPost('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+            </script></body>
+</html>
+
+------------------------------------------------------------
+[2026-10-08 15:23:40] GET https://www4.sii.cl/consdcvinternetui/ -> HTTP 200 text/html;charset=UTF-8
+<!DOCTYPE html><html ng-app=sampleMin lang=es><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><title>::.SII - Consulta Registro Compra Venta</title><script type="text/javascript" src="/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js" data-dtconfig="app=0b9aafb585ceb48d|ssc=1|cssm=s|owasp=1|featureHash=ICANVfghqrux|rdnt=1|uxrgce=1|cuc=3hq5c4eu|mel=100000|expw=1|md=mdcc1=a#conAutenticacion span.id,mdcc2=cNETSCAPE_LIVEWIRE.rut|lastModification=1790850440794|tp=500,50,0|srbbv=2|agentUri=/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js|reportUrl=/consdcvinternetui/rb_bf05726fov|rid=RID_-1379025090|rpid=-1614365718|domain=sii.cl"></script><script src=https://zeusr.sii.cl/admin/responsive_barranav.js data-remove=false></script><script language=javascript src=https://zeus.sii.cl/admin/js/certifica_path.js data-remove=false></script><style>body { 
+padding-right: 0 !important 
+}
+html {
+  overflow-y: scroll !important;
+}
+
+/*Para no mostrar la caja de filtro en datatables de los detalles*/
+.dataTables_filter { visibility: hidden !important;}   
+  
+/* modal*/
+.modal-backdrop {
+ 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/*para selecciona un detalle */
+#tableCompra  tbody tr:hover, #tableVenta tbody tr:hover , 
+#tableDetaObsCOMPRA tbody tr:hover, #tableDetaObsVENTA tbody tr:hover,
+#tableRsmnObs tbody tr:hover, #tableDetaObsVENTA tbody tr:hover{
+    /*background-color: #e2ebff;*/
+    cursor: pointer
+}
+
+#tableCompra  tbody tr.selected , #tableVenta  tbody tr.selected,
+#tableDetaObsCOMPRA tbody tr.selected, #tableDetaObsVENTA tbody tr.selected,
+#tableRsmnObs tbody tr.selected{
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc ;
+}
+.dataTables_length {
+color: #1b1a1a !important;
+}
+.dataTables_info{
+color: #1b1a1a !important;
+}
+/*#tableVenta tbody tr:hover, #myTable tbody tr:hover td.sorting_1 {
+    
+    cursor: pointer
+}
+
+#tableVenta tbody tr.selected {
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc /*eb510d*/;
+}*/
+  
+  /*nav inicio  */ 
+ 
+
+
+
+/*nav fin*/
+/*.nav-filter {
+	background-color:#337AB7;
+	color: white !important;
+}
+
+.nav-pills>li>a:hover {
+	background-color: #FF6699;
+}
+.nav-pills .open>a, .nav-pills .open>a:active, .nav-pills .open>a:focus{
+	background-color: #FF6699;
+}*/
+
+.tool-tip {
+  display: inline-block;
+}
+.tool-tip [disabled] {
+  pointer-events: none;
+}
+
+
+/* tab color */
+.nav-tabs>li>a {
+  /*background-color: #333333;*/ 
+  border-color: #777777;
+  color:#fff;
+  height: 30px !important;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #fff;
+  background-color: #666;
+  border: 1px solid #888888;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: #000000;
+  background-color: #111111;
+}
+
+
+
+/*
+.nav-tabs > li > a {
+  height: 30px !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: #337ab7 !important;
+  color: white !important;
+}
+.nav-tabs > li > a {
+  border: medium none !important;
+  background-color: #d9edf7 !important;
+}
+.nav-tabs > li > a:hover {
+  background-color: #337ab7 !important;
+  border: medium none !important;
+  /* border-radius: 0 !important; */
+ /* color: white;*/
+}
+*/</style><link rel=stylesheet href=app.full.min.css></head><body><script src=app.full.min.js?2026428195.js crossorigin=anonymous></script><script src=/common-1.0/js/sii/loader.js data-remove=false></script><script src=/common-1.0/js/sii/settings.js data-remove=false></script><script src=/common-1.0/js/vendor/ngStorage.min.js data-remove=false></script><script src=/common-1.0/js/sii/helpers.js data-remove=false></script><script src=/common-1.0/js/sii/aa.js data-remove=false></script><div id=my-wrapper><script data-remove=false>mostrar("http://www.sii.cl/servicios_online/1039-.html|Factura Electronica||Consulta Registro de Compra y Venta");</script><div class="web-sii cuerpo"><div class=container><div ng-include="'comun/partial/home/index.html'"></div><div ui-view=""></div></div><script data-remove=false>mostrarPie()</script></div></div><div class="modal fade bd-example-modal-sm" id=esperaDialog data-backdrop=static data-keyboard=false><div class="modal-dialog modal-sm"><div class=modal-content><div class=text-center><h4>Consultando información....</h4><img src=img/ajax-loader.gif class="loading-img-big img-responsive center-block"></div></div></div></div><div id=alert-modal class="modal fade"><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button><h4 id=alert-modal-title class=modal-title></h4></div><div id=alert-modal-body class=modal-body></div><div class=modal-footer><button type=button class="btn btn-danger" data-dismiss=modal>Cerrar</button></div></div></div></div><div id=certifica_links style="position:absolute; width:0; height:0; z-index:7; top: 0; left: 0; visibility: hidden"><script data-remove=false>certifica_path(14484,"/consdcv/internet");</script></div></body></html>
+------------------------------------------------------------
+[2026-10-08 15:23:40] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"3dba902b-d7ad-4121-aed9-91f33a9f463a","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:40] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"6e955a40-919d-48bb-bb93-bed6142a4dfd","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:40] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"67f549e7-163d-4e14-bd11-c7003ec55558","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"60f41476-d863-4f1d-8600-6bbb72c1746e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"c990d700-fc07-4b86-8d97-8ee655bea2ba","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9250123688,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11075923880,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732712,"detFchDoc":"08/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"08/10/2026 10:32:28","detMntExe":0,"detMntNeto":26700,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":5073,"detMntTotal":31773,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973988","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9244104269,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11063885921,"detTipoDoc":null,"detRutDoc":80830500,"detDvDoc":"3","detRznSoc":"COMERCIAL SATEX LTDA","detNroDoc":511898,"detFchDoc":"06/10/2026","detFecAcuse":"08/10/2026 09:39:01","detFecReclamado":null,"detFecRecepcion":"06/10/2026 15:02:57","detMntExe":0,"detMntNeto":38586,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":7331,"detMntTotal":45917,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240752163,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058014227,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732234,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:38:34","detMntExe":0,"detMntNeto":59750,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":11353,"detMntTotal":71103,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973825","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240785221,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058061944,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732237,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:46:39","detMntExe":0,"detMntNeto":103606,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":19685,"detMntTotal":123291,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000974294","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9239680609,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11056505517,"detTipoDoc":null,"detRutDoc":76420341,"detDvDoc":"0","detRznSoc":"INVERSIONES BTP SPA","detNroDoc":67827,"detFchDoc":"05/10/2026","detFecAcuse":"06/10/2026 11:51:42","detFecReclamado":null,"detFecRecepcion":"05/10/2026 11:08:49","detMntExe":0,"detMntNeto":73109,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":13891,"detMntTotal":87000,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"2e122cef-6205-4300-9212-e70bd5f1ddd2","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"c8bbfee1-bb64-4d75-9bbf-e209a1744105","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"a8fb5cc7-a1be-4dbd-9e4e-0d35918654bd","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"d19b1dcc-a091-4b0f-a8f8-22f62d83c4d7","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"6b07aae9-80b5-4aa8-ac99-eadc47874f78","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:41] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229624982,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037752432,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":189,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:57:38","detMntExe":0,"detMntNeto":20000000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":3800000,"detMntTotal":23800000,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229626840,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037755847,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":190,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:58:43","detMntExe":0,"detMntNeto":22980000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":4366200,"detMntTotal":27346200,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229629133,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037759567,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":191,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:00:02","detMntExe":0,"detMntNeto":11495000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":2184050,"detMntTotal":13679050,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229651794,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037798914,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":195,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:07:09","detMntExe":0,"detMntNeto":3618950,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":687601,"detMntTotal":4306551,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229637654,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037774471,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":193,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:02:19","detMntExe":0,"detMntNeto":9998000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":1899620,"detMntTotal":11897620,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229642658,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037783075,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":194,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:04:21","detMntExe":0,"detMntNeto":4946500,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":939835,"detMntTotal":5886335,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"d
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"b631ce80-a597-4f06-a503-92a4bce51a05","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"12c57c86-1251-409e-8bd8-df85846012a1","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"10b560a8-70ae-4d47-945b-2d2a9bfd2ceb","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"3f79fe48-a075-4a73-bcb7-56dc9c8f12ea","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229608448,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037725543,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":63,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:49:20","detMntExe":0,"detMntNeto":11394000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2164860,"detMntTotal":13558860,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229611188,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037730026,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":64,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:50:57","detMntExe":0,"detMntNeto":12897000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2450430,"detMntTotal":15347430,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229597883,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037709367,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":60,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:43:58","detMntExe":0,"detMntNeto":14990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2848100,"detMntTotal":17838100,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9227892472,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11035183779,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1731423,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 14:01:22","detMntExe":0,"detMntNeto":881110,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":167411,"detMntTotal":1048521,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229604593,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037719110,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":62,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:21","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:46:56","detMntExe":0,"detMntNeto":8893000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":1689670,"detMntTotal":10582670,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229590868,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037698122,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":59,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:40:23","detMntExe":0,"detMntNeto":18990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":360
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229584113,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037686613,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4322,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:37:23","detMntExe":61586,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61586,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024795,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346385,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4289,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:47","detMntExe":61266,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61266,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024585,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346092,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4286,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:40","detMntExe":61230,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61230,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214152197,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009512098,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4295,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 19:00:31","detMntExe":61308,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61308,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"91ccd523-7f44-4691-800d-90854c686115","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"e816a1cd-8722-404d-b1e8-e975a32f218f","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"7348269b-0c5f-4437-8e88-bcd2360cf0e1","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:23:42] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"ZC6D5OLVY2COP","transactionId":"35d7d7d7-b9b6-496a-9692-7e89cb7cba3d","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:50] LOGIN CAutInicio.cgi -> HTTP 200 text/html
+<!DOCTYPE html>
+          <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>AutenticaciÃ³n</title>
+  <script type="text/javascript" src="/AUT2000/js/loadBarra.js"></script>
+  
+ <script type="text/javascript" src="/AUT2000/js/AutPrint.js"></script>
+</head>
+<body><script type="text/javascript">
+        var expira = new Date();
+        var ult = new Date();
+        fixDate(expira);
+        fixDate(ult);
+          expira.setTime(expira.getTime() + 7200000);
+          
+                        setCookie('NETSCAPE_LIVEWIRE.locexp',expira.toGMTString(), null, '/', '.sii.cl', 'secure');
+            
+ 		location.replace('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+           	//sendMethodPost('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+            </script></body>
+</html>
+
+------------------------------------------------------------
+[2026-10-08 15:44:51] GET https://www4.sii.cl/consdcvinternetui/ -> HTTP 200 text/html;charset=UTF-8
+<!DOCTYPE html><html ng-app=sampleMin lang=es><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><title>::.SII - Consulta Registro Compra Venta</title><script type="text/javascript" src="/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js" data-dtconfig="app=0b9aafb585ceb48d|ssc=1|cssm=s|owasp=1|featureHash=ICANVfghqrux|rdnt=1|uxrgce=1|cuc=3hq5c4eu|mel=100000|expw=1|md=mdcc1=a#conAutenticacion span.id,mdcc2=cNETSCAPE_LIVEWIRE.rut|lastModification=1790850440794|tp=500,50,0|srbbv=2|agentUri=/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js|reportUrl=/consdcvinternetui/rb_bf05726fov|rid=RID_-1379025090|rpid=-1461741636|domain=sii.cl"></script><script src=https://zeusr.sii.cl/admin/responsive_barranav.js data-remove=false></script><script language=javascript src=https://zeus.sii.cl/admin/js/certifica_path.js data-remove=false></script><style>body { 
+padding-right: 0 !important 
+}
+html {
+  overflow-y: scroll !important;
+}
+
+/*Para no mostrar la caja de filtro en datatables de los detalles*/
+.dataTables_filter { visibility: hidden !important;}   
+  
+/* modal*/
+.modal-backdrop {
+ 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/*para selecciona un detalle */
+#tableCompra  tbody tr:hover, #tableVenta tbody tr:hover , 
+#tableDetaObsCOMPRA tbody tr:hover, #tableDetaObsVENTA tbody tr:hover,
+#tableRsmnObs tbody tr:hover, #tableDetaObsVENTA tbody tr:hover{
+    /*background-color: #e2ebff;*/
+    cursor: pointer
+}
+
+#tableCompra  tbody tr.selected , #tableVenta  tbody tr.selected,
+#tableDetaObsCOMPRA tbody tr.selected, #tableDetaObsVENTA tbody tr.selected,
+#tableRsmnObs tbody tr.selected{
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc ;
+}
+.dataTables_length {
+color: #1b1a1a !important;
+}
+.dataTables_info{
+color: #1b1a1a !important;
+}
+/*#tableVenta tbody tr:hover, #myTable tbody tr:hover td.sorting_1 {
+    
+    cursor: pointer
+}
+
+#tableVenta tbody tr.selected {
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc /*eb510d*/;
+}*/
+  
+  /*nav inicio  */ 
+ 
+
+
+
+/*nav fin*/
+/*.nav-filter {
+	background-color:#337AB7;
+	color: white !important;
+}
+
+.nav-pills>li>a:hover {
+	background-color: #FF6699;
+}
+.nav-pills .open>a, .nav-pills .open>a:active, .nav-pills .open>a:focus{
+	background-color: #FF6699;
+}*/
+
+.tool-tip {
+  display: inline-block;
+}
+.tool-tip [disabled] {
+  pointer-events: none;
+}
+
+
+/* tab color */
+.nav-tabs>li>a {
+  /*background-color: #333333;*/ 
+  border-color: #777777;
+  color:#fff;
+  height: 30px !important;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #fff;
+  background-color: #666;
+  border: 1px solid #888888;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: #000000;
+  background-color: #111111;
+}
+
+
+
+/*
+.nav-tabs > li > a {
+  height: 30px !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: #337ab7 !important;
+  color: white !important;
+}
+.nav-tabs > li > a {
+  border: medium none !important;
+  background-color: #d9edf7 !important;
+}
+.nav-tabs > li > a:hover {
+  background-color: #337ab7 !important;
+  border: medium none !important;
+  /* border-radius: 0 !important; */
+ /* color: white;*/
+}
+*/</style><link rel=stylesheet href=app.full.min.css></head><body><script src=app.full.min.js?2026428195.js crossorigin=anonymous></script><script src=/common-1.0/js/sii/loader.js data-remove=false></script><script src=/common-1.0/js/sii/settings.js data-remove=false></script><script src=/common-1.0/js/vendor/ngStorage.min.js data-remove=false></script><script src=/common-1.0/js/sii/helpers.js data-remove=false></script><script src=/common-1.0/js/sii/aa.js data-remove=false></script><div id=my-wrapper><script data-remove=false>mostrar("http://www.sii.cl/servicios_online/1039-.html|Factura Electronica||Consulta Registro de Compra y Venta");</script><div class="web-sii cuerpo"><div class=container><div ng-include="'comun/partial/home/index.html'"></div><div ui-view=""></div></div><script data-remove=false>mostrarPie()</script></div></div><div class="modal fade bd-example-modal-sm" id=esperaDialog data-backdrop=static data-keyboard=false><div class="modal-dialog modal-sm"><div class=modal-content><div class=text-center><h4>Consultando información....</h4><img src=img/ajax-loader.gif class="loading-img-big img-responsive center-block"></div></div></div></div><div id=alert-modal class="modal fade"><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button><h4 id=alert-modal-title class=modal-title></h4></div><div id=alert-modal-body class=modal-body></div><div class=modal-footer><button type=button class="btn btn-danger" data-dismiss=modal>Cerrar</button></div></div></div></div><div id=certifica_links style="position:absolute; width:0; height:0; z-index:7; top: 0; left: 0; visibility: hidden"><script data-remove=false>certifica_path(14484,"/consdcv/internet");</script></div></body></html>
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"0cee35c4-859c-4a81-b5c3-b8f4d7d4c280","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"9a9734bb-73fb-4caf-9f1e-a17f996665b8","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"025c3e78-eb9b-4dc0-9505-413120ef8002","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"25d9de43-b809-46fa-ad1c-868a5b9ff98d","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"fada5f04-a726-443d-9f6f-b3c6737eca6b","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9250123688,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11075923880,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732712,"detFchDoc":"08/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"08/10/2026 10:32:28","detMntExe":0,"detMntNeto":26700,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":5073,"detMntTotal":31773,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973988","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9244104269,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11063885921,"detTipoDoc":null,"detRutDoc":80830500,"detDvDoc":"3","detRznSoc":"COMERCIAL SATEX LTDA","detNroDoc":511898,"detFchDoc":"06/10/2026","detFecAcuse":"08/10/2026 09:39:01","detFecReclamado":null,"detFecRecepcion":"06/10/2026 15:02:57","detMntExe":0,"detMntNeto":38586,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":7331,"detMntTotal":45917,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240752163,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058014227,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732234,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:38:34","detMntExe":0,"detMntNeto":59750,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":11353,"detMntTotal":71103,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973825","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240785221,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058061944,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732237,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:46:39","detMntExe":0,"detMntNeto":103606,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":19685,"detMntTotal":123291,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000974294","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9239680609,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11056505517,"detTipoDoc":null,"detRutDoc":76420341,"detDvDoc":"0","detRznSoc":"INVERSIONES BTP SPA","detNroDoc":67827,"detFchDoc":"05/10/2026","detFecAcuse":"06/10/2026 11:51:42","detFecReclamado":null,"detFecRecepcion":"05/10/2026 11:08:49","detMntExe":0,"detMntNeto":73109,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":13891,"detMntTotal":87000,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"d6bb7390-8a97-4122-bf1f-a9835e7b78ce","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:52] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"afe0d25b-5559-4f75-b1c9-4ee84428f6c2","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"e593c612-885b-434f-a73a-7d7c0e5c22c7","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"78f5d53b-8a22-4138-aa71-fb4b993c26f6","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"62deb3bc-2521-496f-994a-14b6cb9fe746","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229624982,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037752432,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":189,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:57:38","detMntExe":0,"detMntNeto":20000000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":3800000,"detMntTotal":23800000,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229626840,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037755847,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":190,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:58:43","detMntExe":0,"detMntNeto":22980000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":4366200,"detMntTotal":27346200,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229629133,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037759567,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":191,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:00:02","detMntExe":0,"detMntNeto":11495000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":2184050,"detMntTotal":13679050,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229651794,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037798914,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":195,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:07:09","detMntExe":0,"detMntNeto":3618950,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":687601,"detMntTotal":4306551,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229637654,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037774471,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":193,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:02:19","detMntExe":0,"detMntNeto":9998000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":1899620,"detMntTotal":11897620,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229642658,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037783075,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":194,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:04:21","detMntExe":0,"detMntNeto":4946500,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":939835,"detMntTotal":5886335,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"d
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"9246dbc9-ac2e-4fd4-98f6-0bf2b74bd0be","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"e1467130-e3a0-46a0-bb8d-368d84332dee","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"14eaa100-7dbc-4b33-a5f0-e494adc5cf19","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"28741c05-77ce-4c66-8df0-665bb02b9c1c","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:53] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229608448,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037725543,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":63,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:49:20","detMntExe":0,"detMntNeto":11394000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2164860,"detMntTotal":13558860,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229611188,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037730026,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":64,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:50:57","detMntExe":0,"detMntNeto":12897000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2450430,"detMntTotal":15347430,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229597883,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037709367,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":60,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:43:58","detMntExe":0,"detMntNeto":14990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2848100,"detMntTotal":17838100,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9227892472,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11035183779,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1731423,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 14:01:22","detMntExe":0,"detMntNeto":881110,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":167411,"detMntTotal":1048521,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229604593,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037719110,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":62,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:21","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:46:56","detMntExe":0,"detMntNeto":8893000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":1689670,"detMntTotal":10582670,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229590868,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037698122,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":59,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:40:23","detMntExe":0,"detMntNeto":18990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":360
+------------------------------------------------------------
+[2026-10-08 15:44:54] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229584113,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037686613,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4322,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:37:23","detMntExe":61586,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61586,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024795,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346385,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4289,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:47","detMntExe":61266,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61266,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024585,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346092,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4286,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:40","detMntExe":61230,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61230,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214152197,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009512098,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4295,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 19:00:31","detMntExe":61308,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61308,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"5178b877-65d2-410a-8987-4c7476e35385","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:54] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"c0006710-36d5-4e0c-a779-fe345e7ca784","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:54] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"d8f1a6d6-c07c-43d5-bfe9-1d754e8756f5","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-08 15:44:54] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"7LFDV0P9TYROM","transactionId":"16854037-2522-42d8-8aa8-f13848d05e1f","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:32:07] LOGIN CAutInicio.cgi -> HTTP 200 text/html
+
+<!DOCTYPE html>
+<html lang="es-cl">
+<head>
+	<meta charset="utf-8" content="" />
+	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="Contacto Web" name="description" />
+	<title>SII | Servicio de Impuestos Internos</title>
+	<script src="/js/responsive_barranav.js"></script>
+	<style type="text/css">
+		.web-sii .box-900 {
+		    max-width: 400px;
+		    min-height: 200px;
+		    display: block;
+		    margin: 0px auto 50px;
+		}
+		.web-sii .box-900 h2 {
+		    text-align: center;
+		    font-size: 22px;
+		    line-height: 28px;
+		    border-top: 1px solid #ccc;
+		    padding-top: 20px;
+		    margin: 20px 0 20px;
+		}
+		.web-sii .box-900 img {
+		    margin: 0 auto;
+		    max-width: 160px;
+		    display: block;
+		    width: 100%;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="my-wrapper">
+		<!-- CABECERAS -->
+		<script type="text/javascript">
+			mostrar(0);
+		</script>
+		<!-- FIN CABECERAS-->
+
+	<!-- CUERPO -->
+		<div class="web-sii cuerpo">
+
+	   		<div class="container">
+
+	   			<div class="box-900">
+		   			<img src="img/900.png"/>
+					<h2>En este momento no lo podemos atender. Por favor intente mÃ¡s tarde.</h2>
+				</div>
+	      	</div>
+	</div>
+	<!-- FIN CUERPO -->
+
+   <div style="clear: both;"></div>
+
+	<!-- PIE -->
+	<script>
+		mostrarPie()
+	</script>
+	<!-- FIN PIE -->
+		
+</body>
+</html>
+
+------------------------------------------------------------
+[2026-10-13 09:33:02] LOGIN CAutInicio.cgi -> HTTP 200 text/html
+<!DOCTYPE html>
+          <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>AutenticaciÃ³n</title>
+  <script type="text/javascript" src="/AUT2000/js/loadBarra.js"></script>
+  
+ <script type="text/javascript" src="/AUT2000/js/AutPrint.js"></script>
+</head>
+<body><script type="text/javascript">
+        var expira = new Date();
+        var ult = new Date();
+        fixDate(expira);
+        fixDate(ult);
+          expira.setTime(expira.getTime() + 7200000);
+          
+                        setCookie('NETSCAPE_LIVEWIRE.locexp',expira.toGMTString(), null, '/', '.sii.cl', 'secure');
+            
+ 		location.replace('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+           	//sendMethodPost('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+            </script></body>
+</html>
+
+------------------------------------------------------------
+[2026-10-13 09:33:03] GET https://www4.sii.cl/consdcvinternetui/ -> HTTP 200 text/html;charset=UTF-8
+<!DOCTYPE html><html ng-app=sampleMin lang=es><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><title>::.SII - Consulta Registro Compra Venta</title><script type="text/javascript" src="/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js" data-dtconfig="app=0b9aafb585ceb48d|ssc=1|cssm=s|owasp=1|featureHash=ICANVfghqrux|rdnt=1|uxrgce=1|cuc=3hq5c4eu|mel=100000|expw=1|md=mdcc1=a#conAutenticacion span.id,mdcc2=cNETSCAPE_LIVEWIRE.rut|lastModification=1790850440794|tp=500,50,0|srbbv=2|agentUri=/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js|reportUrl=/consdcvinternetui/rb_bf05726fov|rid=RID_-1379025090|rpid=-650664987|domain=sii.cl"></script><script src=https://zeusr.sii.cl/admin/responsive_barranav.js data-remove=false></script><script language=javascript src=https://zeus.sii.cl/admin/js/certifica_path.js data-remove=false></script><style>body { 
+padding-right: 0 !important 
+}
+html {
+  overflow-y: scroll !important;
+}
+
+/*Para no mostrar la caja de filtro en datatables de los detalles*/
+.dataTables_filter { visibility: hidden !important;}   
+  
+/* modal*/
+.modal-backdrop {
+ 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/*para selecciona un detalle */
+#tableCompra  tbody tr:hover, #tableVenta tbody tr:hover , 
+#tableDetaObsCOMPRA tbody tr:hover, #tableDetaObsVENTA tbody tr:hover,
+#tableRsmnObs tbody tr:hover, #tableDetaObsVENTA tbody tr:hover{
+    /*background-color: #e2ebff;*/
+    cursor: pointer
+}
+
+#tableCompra  tbody tr.selected , #tableVenta  tbody tr.selected,
+#tableDetaObsCOMPRA tbody tr.selected, #tableDetaObsVENTA tbody tr.selected,
+#tableRsmnObs tbody tr.selected{
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc ;
+}
+.dataTables_length {
+color: #1b1a1a !important;
+}
+.dataTables_info{
+color: #1b1a1a !important;
+}
+/*#tableVenta tbody tr:hover, #myTable tbody tr:hover td.sorting_1 {
+    
+    cursor: pointer
+}
+
+#tableVenta tbody tr.selected {
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc /*eb510d*/;
+}*/
+  
+  /*nav inicio  */ 
+ 
+
+
+
+/*nav fin*/
+/*.nav-filter {
+	background-color:#337AB7;
+	color: white !important;
+}
+
+.nav-pills>li>a:hover {
+	background-color: #FF6699;
+}
+.nav-pills .open>a, .nav-pills .open>a:active, .nav-pills .open>a:focus{
+	background-color: #FF6699;
+}*/
+
+.tool-tip {
+  display: inline-block;
+}
+.tool-tip [disabled] {
+  pointer-events: none;
+}
+
+
+/* tab color */
+.nav-tabs>li>a {
+  /*background-color: #333333;*/ 
+  border-color: #777777;
+  color:#fff;
+  height: 30px !important;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #fff;
+  background-color: #666;
+  border: 1px solid #888888;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: #000000;
+  background-color: #111111;
+}
+
+
+
+/*
+.nav-tabs > li > a {
+  height: 30px !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: #337ab7 !important;
+  color: white !important;
+}
+.nav-tabs > li > a {
+  border: medium none !important;
+  background-color: #d9edf7 !important;
+}
+.nav-tabs > li > a:hover {
+  background-color: #337ab7 !important;
+  border: medium none !important;
+  /* border-radius: 0 !important; */
+ /* color: white;*/
+}
+*/</style><link rel=stylesheet href=app.full.min.css></head><body><script src=app.full.min.js?2026428195.js crossorigin=anonymous></script><script src=/common-1.0/js/sii/loader.js data-remove=false></script><script src=/common-1.0/js/sii/settings.js data-remove=false></script><script src=/common-1.0/js/vendor/ngStorage.min.js data-remove=false></script><script src=/common-1.0/js/sii/helpers.js data-remove=false></script><script src=/common-1.0/js/sii/aa.js data-remove=false></script><div id=my-wrapper><script data-remove=false>mostrar("http://www.sii.cl/servicios_online/1039-.html|Factura Electronica||Consulta Registro de Compra y Venta");</script><div class="web-sii cuerpo"><div class=container><div ng-include="'comun/partial/home/index.html'"></div><div ui-view=""></div></div><script data-remove=false>mostrarPie()</script></div></div><div class="modal fade bd-example-modal-sm" id=esperaDialog data-backdrop=static data-keyboard=false><div class="modal-dialog modal-sm"><div class=modal-content><div class=text-center><h4>Consultando información....</h4><img src=img/ajax-loader.gif class="loading-img-big img-responsive center-block"></div></div></div></div><div id=alert-modal class="modal fade"><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button><h4 id=alert-modal-title class=modal-title></h4></div><div id=alert-modal-body class=modal-body></div><div class=modal-footer><button type=button class="btn btn-danger" data-dismiss=modal>Cerrar</button></div></div></div></div><div id=certifica_links style="position:absolute; width:0; height:0; z-index:7; top: 0; left: 0; visibility: hidden"><script data-remove=false>certifica_path(14484,"/consdcv/internet");</script></div></body></html>
+------------------------------------------------------------
+[2026-10-13 09:33:03] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"b599ef4c-bb80-418f-88b7-b07a0ef6350e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"48239d10-fec9-4ce1-8d94-5bb09b5739a8","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"44531de9-02ab-4ff4-902b-4bbdd3644e7e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"c9b28669-0d59-42c2-b39c-cccde3c3a17e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"4437cda6-706c-432f-b0dd-1c1e0f8f682d","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9250123688,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11075923880,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732712,"detFchDoc":"08/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"08/10/2026 10:32:28","detMntExe":0,"detMntNeto":26700,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":5073,"detMntTotal":31773,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973988","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9244104269,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11063885921,"detTipoDoc":null,"detRutDoc":80830500,"detDvDoc":"3","detRznSoc":"COMERCIAL SATEX LTDA","detNroDoc":511898,"detFchDoc":"06/10/2026","detFecAcuse":"08/10/2026 09:39:01","detFecReclamado":null,"detFecRecepcion":"06/10/2026 15:02:57","detMntExe":0,"detMntNeto":38586,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":7331,"detMntTotal":45917,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240752163,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058014227,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732234,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:38:34","detMntExe":0,"detMntNeto":59750,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":11353,"detMntTotal":71103,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973825","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240785221,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058061944,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732237,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:46:39","detMntExe":0,"detMntNeto":103606,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":19685,"detMntTotal":123291,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000974294","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9239680609,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11056505517,"detTipoDoc":null,"detRutDoc":76420341,"detDvDoc":"0","detRznSoc":"INVERSIONES BTP SPA","detNroDoc":67827,"detFchDoc":"05/10/2026","detFecAcuse":"06/10/2026 11:51:42","detFecReclamado":null,"detFecRecepcion":"05/10/2026 11:08:49","detMntExe":0,"detMntNeto":73109,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":13891,"detMntTotal":87000,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"ce5d133a-b1da-42c6-806c-3bca2e49383a","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"aa10a92d-ecd4-4ff5-a349-184e800956ef","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"5b6ed0ac-cd11-4f8d-b041-3b9f8129b352","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"7e29336a-8b5c-423f-9320-9e721b332fee","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"dcb75be0-dcdc-4a89-8c42-a5c8c80a49ca","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229624982,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037752432,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":189,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:57:38","detMntExe":0,"detMntNeto":20000000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":3800000,"detMntTotal":23800000,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229626840,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037755847,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":190,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:58:43","detMntExe":0,"detMntNeto":22980000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":4366200,"detMntTotal":27346200,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229629133,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037759567,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":191,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:00:02","detMntExe":0,"detMntNeto":11495000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":2184050,"detMntTotal":13679050,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229651794,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037798914,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":195,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:07:09","detMntExe":0,"detMntNeto":3618950,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":687601,"detMntTotal":4306551,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229637654,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037774471,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":193,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:02:19","detMntExe":0,"detMntNeto":9998000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":1899620,"detMntTotal":11897620,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229642658,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037783075,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":194,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:04:21","detMntExe":0,"detMntNeto":4946500,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":939835,"detMntTotal":5886335,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"d
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"5c5a953f-9820-4699-b38b-43c1e01cb864","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"bbfc9d91-89e7-4961-a2c5-496b0d5ddbc9","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:04] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"d18fefa5-682b-4d06-851c-1de6ce22139b","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:05] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"a2a4ef05-368f-49ae-875b-b0c38161952e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:05] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229608448,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037725543,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":63,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:49:20","detMntExe":0,"detMntNeto":11394000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2164860,"detMntTotal":13558860,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229611188,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037730026,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":64,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:50:57","detMntExe":0,"detMntNeto":12897000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2450430,"detMntTotal":15347430,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229597883,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037709367,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":60,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:43:58","detMntExe":0,"detMntNeto":14990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2848100,"detMntTotal":17838100,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9227892472,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11035183779,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1731423,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 14:01:22","detMntExe":0,"detMntNeto":881110,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":167411,"detMntTotal":1048521,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229604593,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037719110,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":62,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:21","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:46:56","detMntExe":0,"detMntNeto":8893000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":1689670,"detMntTotal":10582670,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229590868,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037698122,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":59,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:40:23","detMntExe":0,"detMntNeto":18990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":360
+------------------------------------------------------------
+[2026-10-13 09:33:05] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229584113,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037686613,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4322,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:37:23","detMntExe":61586,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61586,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024795,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346385,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4289,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:47","detMntExe":61266,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61266,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024585,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346092,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4286,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:40","detMntExe":61230,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61230,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214152197,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009512098,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4295,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 19:00:31","detMntExe":61308,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61308,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"addcd31d-8185-4ef9-b688-114ae3f412e9","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:05] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"4cae716e-8d4c-4d8d-8ef2-6b53ec6e9186","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:05] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"f7fa1dd8-f19c-4600-bf2c-d99739cf664e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:05] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"QQEHJRNPD0QEI","transactionId":"33e21c51-ecd6-41c9-8e9d-9cd999060c52","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:12] LOGIN CAutInicio.cgi -> HTTP 200 text/html
+<!DOCTYPE html>
+          <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>AutenticaciÃ³n</title>
+  <script type="text/javascript" src="/AUT2000/js/loadBarra.js"></script>
+  
+ <script type="text/javascript" src="/AUT2000/js/AutPrint.js"></script>
+</head>
+<body><script type="text/javascript">
+        var expira = new Date();
+        var ult = new Date();
+        fixDate(expira);
+        fixDate(ult);
+          expira.setTime(expira.getTime() + 7200000);
+          
+                        setCookie('NETSCAPE_LIVEWIRE.locexp',expira.toGMTString(), null, '/', '.sii.cl', 'secure');
+            
+ 		location.replace('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+           	//sendMethodPost('https://misiir.sii.cl/cgi_misii/siihome.cgi');
+            </script></body>
+</html>
+
+------------------------------------------------------------
+[2026-10-13 09:33:13] GET https://www4.sii.cl/consdcvinternetui/ -> HTTP 200 text/html;charset=UTF-8
+<!DOCTYPE html><html ng-app=sampleMin lang=es><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><title>::.SII - Consulta Registro Compra Venta</title><script type="text/javascript" src="/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js" data-dtconfig="app=0b9aafb585ceb48d|ssc=1|cssm=s|owasp=1|featureHash=ICANVfghqrux|rdnt=1|uxrgce=1|cuc=3hq5c4eu|mel=100000|expw=1|md=mdcc1=a#conAutenticacion span.id,mdcc2=cNETSCAPE_LIVEWIRE.rut|lastModification=1790850440794|tp=500,50,0|srbbv=2|agentUri=/consdcvinternetui/ruxitagentjs_ICANVfghqrux_10347260902154543.js|reportUrl=/consdcvinternetui/rb_bf05726fov|rid=RID_-1379025090|rpid=1105579295|domain=sii.cl"></script><script src=https://zeusr.sii.cl/admin/responsive_barranav.js data-remove=false></script><script language=javascript src=https://zeus.sii.cl/admin/js/certifica_path.js data-remove=false></script><style>body { 
+padding-right: 0 !important 
+}
+html {
+  overflow-y: scroll !important;
+}
+
+/*Para no mostrar la caja de filtro en datatables de los detalles*/
+.dataTables_filter { visibility: hidden !important;}   
+  
+/* modal*/
+.modal-backdrop {
+ 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/*para selecciona un detalle */
+#tableCompra  tbody tr:hover, #tableVenta tbody tr:hover , 
+#tableDetaObsCOMPRA tbody tr:hover, #tableDetaObsVENTA tbody tr:hover,
+#tableRsmnObs tbody tr:hover, #tableDetaObsVENTA tbody tr:hover{
+    /*background-color: #e2ebff;*/
+    cursor: pointer
+}
+
+#tableCompra  tbody tr.selected , #tableVenta  tbody tr.selected,
+#tableDetaObsCOMPRA tbody tr.selected, #tableDetaObsVENTA tbody tr.selected,
+#tableRsmnObs tbody tr.selected{
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc ;
+}
+.dataTables_length {
+color: #1b1a1a !important;
+}
+.dataTables_info{
+color: #1b1a1a !important;
+}
+/*#tableVenta tbody tr:hover, #myTable tbody tr:hover td.sorting_1 {
+    
+    cursor: pointer
+}
+
+#tableVenta tbody tr.selected {
+    color: white;
+    font-weight:bold;
+    background-color: #78a5cc /*eb510d*/;
+}*/
+  
+  /*nav inicio  */ 
+ 
+
+
+
+/*nav fin*/
+/*.nav-filter {
+	background-color:#337AB7;
+	color: white !important;
+}
+
+.nav-pills>li>a:hover {
+	background-color: #FF6699;
+}
+.nav-pills .open>a, .nav-pills .open>a:active, .nav-pills .open>a:focus{
+	background-color: #FF6699;
+}*/
+
+.tool-tip {
+  display: inline-block;
+}
+.tool-tip [disabled] {
+  pointer-events: none;
+}
+
+
+/* tab color */
+.nav-tabs>li>a {
+  /*background-color: #333333;*/ 
+  border-color: #777777;
+  color:#fff;
+  height: 30px !important;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #fff;
+  background-color: #666;
+  border: 1px solid #888888;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: #000000;
+  background-color: #111111;
+}
+
+
+
+/*
+.nav-tabs > li > a {
+  height: 30px !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: #337ab7 !important;
+  color: white !important;
+}
+.nav-tabs > li > a {
+  border: medium none !important;
+  background-color: #d9edf7 !important;
+}
+.nav-tabs > li > a:hover {
+  background-color: #337ab7 !important;
+  border: medium none !important;
+  /* border-radius: 0 !important; */
+ /* color: white;*/
+}
+*/</style><link rel=stylesheet href=app.full.min.css></head><body><script src=app.full.min.js?2026428195.js crossorigin=anonymous></script><script src=/common-1.0/js/sii/loader.js data-remove=false></script><script src=/common-1.0/js/sii/settings.js data-remove=false></script><script src=/common-1.0/js/vendor/ngStorage.min.js data-remove=false></script><script src=/common-1.0/js/sii/helpers.js data-remove=false></script><script src=/common-1.0/js/sii/aa.js data-remove=false></script><div id=my-wrapper><script data-remove=false>mostrar("http://www.sii.cl/servicios_online/1039-.html|Factura Electronica||Consulta Registro de Compra y Venta");</script><div class="web-sii cuerpo"><div class=container><div ng-include="'comun/partial/home/index.html'"></div><div ui-view=""></div></div><script data-remove=false>mostrarPie()</script></div></div><div class="modal fade bd-example-modal-sm" id=esperaDialog data-backdrop=static data-keyboard=false><div class="modal-dialog modal-sm"><div class=modal-content><div class=text-center><h4>Consultando información....</h4><img src=img/ajax-loader.gif class="loading-img-big img-responsive center-block"></div></div></div></div><div id=alert-modal class="modal fade"><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button><h4 id=alert-modal-title class=modal-title></h4></div><div id=alert-modal-body class=modal-body></div><div class=modal-footer><button type=button class="btn btn-danger" data-dismiss=modal>Cerrar</button></div></div></div></div><div id=certifica_links style="position:absolute; width:0; height:0; z-index:7; top: 0; left: 0; visibility: hidden"><script data-remove=false>certifica_path(14484,"/consdcv/internet");</script></div></body></html>
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"261f53ac-ae44-4635-858d-c5e3638bdb23","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"4a9d5a90-a144-4b54-b201-5cc482f44de2","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"2d8e92a7-6873-4fd6-b735-840da043182e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"6b182114-9a2e-4435-bdf7-64be6045fefe","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"4729ae0a-e945-4109-992c-1578357549c6","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9250123688,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11075923880,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732712,"detFchDoc":"08/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"08/10/2026 10:32:28","detMntExe":0,"detMntNeto":26700,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":5073,"detMntTotal":31773,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973988","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9244104269,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11063885921,"detTipoDoc":null,"detRutDoc":80830500,"detDvDoc":"3","detRznSoc":"COMERCIAL SATEX LTDA","detNroDoc":511898,"detFchDoc":"06/10/2026","detFecAcuse":"08/10/2026 09:39:01","detFecReclamado":null,"detFecRecepcion":"06/10/2026 15:02:57","detMntExe":0,"detMntNeto":38586,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":7331,"detMntTotal":45917,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240752163,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058014227,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732234,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:38:34","detMntExe":0,"detMntNeto":59750,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":11353,"detMntTotal":71103,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000973825","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9240785221,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11058061944,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1732237,"detFchDoc":"05/10/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"05/10/2026 15:46:39","detMntExe":0,"detMntNeto":103606,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":19685,"detMntTotal":123291,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":52,"detFolioDocRef":"0000974294","detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9239680609,"dcvCodigo":1295745164,"dcvEstadoContab":null,"detCodigo":11056505517,"detTipoDoc":null,"detRutDoc":76420341,"detDvDoc":"0","detRznSoc":"INVERSIONES BTP SPA","detNroDoc":67827,"detFchDoc":"05/10/2026","detFecAcuse":"06/10/2026 11:51:42","detFecReclamado":null,"detFecRecepcion":"05/10/2026 11:08:49","detMntExe":0,"detMntNeto":73109,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":13891,"detMntTotal":87000,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202610,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"5bfe1db6-2e86-46a5-a04b-39b8b620c055","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:13] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"67d02ea3-09b8-4edb-92fb-04ba6f94124c","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"41f88cf8-e498-4596-804c-efe88b791ec5","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"cae8f77a-b727-484a-9bf4-a6668fda8e4c","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"739cf3ad-a9e4-43f7-b0c0-62b448145f11","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229624982,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037752432,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":189,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:57:38","detMntExe":0,"detMntNeto":20000000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":3800000,"detMntTotal":23800000,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229626840,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037755847,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":190,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:58:43","detMntExe":0,"detMntNeto":22980000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":4366200,"detMntTotal":27346200,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229629133,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037759567,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":191,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:00:02","detMntExe":0,"detMntNeto":11495000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":2184050,"detMntTotal":13679050,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229651794,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037798914,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":195,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:07:09","detMntExe":0,"detMntNeto":3618950,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":687601,"detMntTotal":4306551,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229637654,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037774471,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":193,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:02:19","detMntExe":0,"detMntNeto":9998000,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":1899620,"detMntTotal":11897620,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"detIVANoRetenido":0,"detIVAPropio":0,"detIVATerceros":0,"detIVAUsoComun":null,"detLiqRutEmisor":0,"detLiqDvEmisor":null,"detLiqValComNeto":0,"detLiqValComExe":0,"detLiqValComIVA":0,"detIVAFueraPlazo":0,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":0,"detLey18211":0,"detDepEnvase":0,"detIndSinCosto":2,"detIndServicio":0,"detMntNoFact":0,"detMntPeriodo":0,"detPsjNac":0,"detPsjInt":0,"detNumInt":null,"detCdgSIISucur":90522448,"detEmisorNota":0,"detTabPuros":null,"detTabCigarrillos":null,"detTabElaborado":null,"detImpVehiculo":null,"detTpoImp":null,"detTipoTransaccion":null,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":false,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229642658,"dcvCodigo":1289141020,"dcvEstadoContab":null,"detCodigo":11037783075,"detTipoDoc":33,"detRutDoc":77323495,"detDvDoc":"7","detRznSoc":"SAQ SECURITY SPA","detNroDoc":194,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 22:07:39","detFecReclamado":null,"detFecRecepcion":"30/09/2026 22:04:21","detMntExe":0,"detMntNeto":4946500,"detMntActFijo":null,"detMntIVAActFijo":null,"detMntIVANoRec":null,"detMntCodNoRec":null,"detMntSinCredito":null,"detMntIVA":939835,"detMntTotal":5886335,"detTasaImp":"19","detAnulado":null,"detIVARetTotal":0,"detIVARetParcial":0,"d
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"3c991313-22fd-4bad-9942-0e347d89ed92","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"2b6a58fe-d34c-4f2b-9d35-f9c29e526a94","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"a179be3e-2706-4822-9550-d933f012385f","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleVenta -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"c45b5252-4b47-45cb-9f06-e3dd86228bc3","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleVenta","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229608448,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037725543,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":63,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:49:20","detMntExe":0,"detMntNeto":11394000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2164860,"detMntTotal":13558860,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229611188,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037730026,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":64,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:50:57","detMntExe":0,"detMntNeto":12897000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2450430,"detMntTotal":15347430,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229597883,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037709367,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":60,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:43:58","detMntExe":0,"detMntNeto":14990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":2848100,"detMntTotal":17838100,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9227892472,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11035183779,"detTipoDoc":null,"detRutDoc":78610360,"detDvDoc":"6","detRznSoc":"COM. E INDUSTRIAL NOVA SEGURIDAD LTDA.","detNroDoc":1731423,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 14:01:22","detMntExe":0,"detMntNeto":881110,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":167411,"detMntTotal":1048521,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229604593,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037719110,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":62,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:21","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:46:56","detMntExe":0,"detMntNeto":8893000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":1689670,"detMntTotal":10582670,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":92001032,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"C","detEventoReceptorLeyenda":"Recibo otorgado por el receptor","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9229590868,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037698122,"detTipoDoc":null,"detRutDoc":78172011,"detDvDoc":"9","detRznSoc":"INVERSIONES ACEITON SPA","detNroDoc":59,"detFchDoc":"30/09/2026","detFecAcuse":"30/09/2026 21:55:20","detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:40:23","detMntExe":0,"detMntNeto":18990000,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":360
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":[{"dhdrCodigo":9229584113,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11037686613,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4322,"detFchDoc":"30/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"30/09/2026 21:37:23","detMntExe":61586,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61586,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024795,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346385,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4289,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:47","detMntExe":61266,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61266,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214024585,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009346092,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4286,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 18:04:40","detMntExe":61230,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61230,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null},{"dhdrCodigo":9214152197,"dcvCodigo":1257814677,"dcvEstadoContab":null,"detCodigo":11009512098,"detTipoDoc":null,"detRutDoc":76483208,"detDvDoc":"6","detRznSoc":"SOC. DE PROFESIONALES AENA CONSULTORES LTDA.","detNroDoc":4295,"detFchDoc":"24/09/2026","detFecAcuse":null,"detFecReclamado":null,"detFecRecepcion":"24/09/2026 19:00:31","detMntExe":61308,"detMntNeto":0,"detMntActFijo":0,"detMntIVAActFijo":0,"detMntIVANoRec":0,"detMntCodNoRec":0,"detMntSinCredito":0,"detMntIVA":0,"detMntTotal":61308,"detTasaImp":null,"detAnulado":null,"detIVARetTotal":null,"detIVARetParcial":null,"detIVANoRetenido":0,"detIVAPropio":null,"detIVATerceros":null,"detIVAUsoComun":0,"detLiqRutEmisor":null,"detLiqDvEmisor":null,"detLiqValComNeto":null,"detLiqValComExe":null,"detLiqValComIVA":null,"detIVAFueraPlazo":null,"detTipoDocRef":0,"detFolioDocRef":null,"detExpNumId":null,"detExpNacionalidad":null,"detCredEc":null,"detLey18211":null,"detDepEnvase":null,"detIndSinCosto":null,"detIndServicio":null,"detMntNoFact":null,"detMntPeriodo":null,"detPsjNac":null,"detPsjInt":null,"detNumInt":null,"detCdgSIISucur":0,"detEmisorNota":0,"detTabPuros":0,"detTabCigarrillos":0,"detTabElaborado":0,"detImpVehiculo":0,"detTpoImp":1,"detTipoTransaccion":1,"detEventoReceptor":"P","detEventoReceptorLeyenda":"Forma de pago contado","cambiarTipoTran":true,"detPcarga":202609,"descTipoTransaccion":"Del Giro","totalDtoiMontoImp":0,"totalDinrMontoIVANoR":null,"emisorAgresivo":false,"fechaActivacionAnotacion":null}],"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"274eacbc-f77b-468c-96bd-895110f5b625","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":0,"msgeRespuesta":null,"codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"5ed661ae-066d-4763-a433-95b9b7b4d77e","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:14] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"e7179bdc-f67d-4be5-b438-efaeae1be233","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------
+[2026-10-13 09:33:15] POST getDetalleCompra -> HTTP 200 application/json;charset=utf-8
+{"data":null,"esDocPapel":false,"dataCabecera":null,"metaData":{"conversationId":"R2CZQG2M3J5NK","transactionId":"914d7400-78f4-46d7-921d-f29a3201167b","namespace":"cl.sii.sdi.lob.diii.consdcv.data.api.interfaces.FacadeService/getDetalleCompra","info":null,"errors":null,"page":null},"respEstado":{"codRespuesta":99,"msgeRespuesta":"No es posible realizar esta consulta, no hay documentos o debe ser de forma diferida","codError":null}}
+------------------------------------------------------------

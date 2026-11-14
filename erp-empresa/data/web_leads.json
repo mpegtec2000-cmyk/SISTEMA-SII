@@ -1,0 +1,15 @@
+[
+  {
+    "id": "LEAD-1794623481148-826",
+    "createdAt": "2026-11-14T02:31:21.148Z",
+    "source": "BANCARIZACION",
+    "personType": "Persona / PyME",
+    "name": "Solicitante Web",
+    "rut": "",
+    "email": "audit@test.com",
+    "phone": "",
+    "summary": "Solicitud desde portal web FINANZIA",
+    "status": "NUEVO",
+    "payload": {}
+  }
+]

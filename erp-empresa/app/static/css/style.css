@@ -1,0 +1,445 @@
+/* ==========================================================================
+   FINANZIA ERP COMERCIAL & OPERATIVO — HIGH-CRAFT DESIGN SYSTEM (2026)
+   Inspired by Linear / Attio / Raycast Dual-Rail Architecture
+   ========================================================================== */
+
+html,
+:root {
+  color-scheme: light;
+  --shell-bg: #EAECEF;
+  --panel-bg: #F7F8FA;
+  --canvas-bg: #FFFFFF;
+  --rail-bg: #141416;
+  --pill-active: #EBECEE;
+  --border-hairline: rgba(15, 23, 42, 0.075);
+  --border-strong: rgba(15, 23, 42, 0.12);
+  --primary-navy: #09090B;
+  --secondary-navy: #18181B;
+  --accent-blue: #2563EB;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+  background-color: var(--shell-bg);
+  color: #09090B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.022em;
+}
+
+/* Tabular numerals for all financial metrics & counts */
+.font-mono,
+#kpi-ventas-netas,
+#kpi-costo-neto,
+#kpi-utilidad-neta,
+#kpi-f29-total,
+#kpi-cxc-total,
+#kpi-cxp-total,
+#waterfall-venta-neta,
+#waterfall-costo-directo,
+#waterfall-gastos-op,
+#waterfall-utilidad-neta,
+table td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   1. DUAL-RAIL SIDEBAR NAVIGATION (DARK ICON DOCK + CONTEXTUAL SUB-PANEL)
+   ========================================================================== */
+
+/* Dark Matte Capsule Rail (Leftmost) */
+.erp-dark-rail {
+  background: linear-gradient(180deg, #18181B 0%, #121214 100%);
+  border-radius: 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rail-tab-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.52);
+  border: 1px solid transparent;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.rail-tab-btn:hover {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.rail-tab-btn.rail-active {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.13) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* Secondary Contextual Sidebar Panel (Light Alabaster) */
+.erp-sub-sidebar {
+  background-color: var(--panel-bg);
+}
+
+/* Override JS active classes on .nav-tab-btn to match the exact Reference Image pill */
+.nav-tab-btn {
+  border-radius: 10px !important;
+  border: 1px solid transparent !important;
+  padding: 0.5rem 0.7rem !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  font-weight: 500 !important;
+  color: #3F3F46 !important;
+  transition: all 0.15s ease !important;
+}
+
+.nav-tab-btn:hover {
+  background-color: rgba(24, 24, 27, 0.045) !important;
+  color: #09090B !important;
+}
+
+.nav-tab-btn.bg-blue-600,
+.nav-tab-btn.nav-pill-active {
+  background-color: #EBECEE !important;
+  color: #09090B !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(24, 24, 27, 0.08) !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+.nav-tab-btn.bg-blue-600 svg,
+.nav-tab-btn.nav-pill-active svg {
+  color: #09090B !important;
+}
+
+.nav-tab-btn .nav-count-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #71717A;
+  font-variant-numeric: tabular-nums;
+}
+
+.nav-tab-btn.bg-blue-600 .nav-count-badge {
+  color: #52525B;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   2. MAIN ELEVATED WHITE CANVAS & REFINED BORDERS ("RETOCA BORDES")
+   ========================================================================== */
+
+.erp-main-canvas {
+  background-color: #FFFFFF;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.025),
+    0 12px 32px -4px rgba(15, 23, 42, 0.04);
+}
+
+/* Refine all cards inside the ERP views */
+.tab-view-content .rounded-xl,
+.tab-view-content .rounded-2xl {
+  border-color: rgba(15, 23, 42, 0.085);
+}
+
+.tab-view-content > div.bg-white,
+.tab-view-content .grid > div.bg-white {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.025),
+    0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  border-radius: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tab-view-content .grid > div.bg-white:hover {
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.03),
+    0 10px 24px -6px rgba(15, 23, 42, 0.06);
+}
+
+/* Tables refinement */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table thead th {
+  background-color: #F8F9FB;
+  color: #52525B;
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+table tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+table tbody tr:hover {
+  background-color: #F8FAFC;
+}
+
+table tbody td {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+/* Inputs & Selects refinement */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="month"],
+input[type="email"],
+select,
+textarea {
+  border-color: rgba(15, 23, 42, 0.13);
+  border-radius: 9px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #18181B !important;
+  box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.08) !important;
+  outline: none !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.28);
+}
+
+/* Canvas para firma digital */
+.signature-canvas-wrapper {
+  position: relative;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: 12px;
+  background-color: #FAFAFA;
+  touch-action: none;
+  transition: border-color 0.15s ease;
+}
+
+.signature-canvas-wrapper:hover {
+  border-color: #94A3B8;
+}
+
+.signature-canvas {
+  width: 100%;
+  height: 180px;
+  cursor: crosshair;
+}
+
+/* Estilo para impresión / exportación de cotización */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #quotation-print-modal, #quotation-print-modal * {
+    visibility: visible;
+  }
+  #quotation-print-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Animaciones suaves */
+.fade-in {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Badges de semáforo de rentabilidad */
+.badge-verde {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.badge-amarillo {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #B45309;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.badge-rojo {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #B91C1C;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* ==========================================================================
+   MODERN DASHBOARD & KPI CARD SYSTEM (Executive Minimal Aesthetic)
+   ========================================================================== */
+.erp-kpi-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.erp-kpi-card:hover {
+  border-color: rgba(15, 23, 42, 0.16);
+  box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-1.5px);
+}
+
+.erp-icon-squircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #F4F4F6;
+  color: #18181B;
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.erp-kpi-card:hover .erp-icon-squircle {
+  transform: scale(1.06);
+}
+
+/* Executive buttons */
+.erp-btn-dark {
+  background: #141416;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 11.5px;
+  border-radius: 10px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
+}
+
+.erp-btn-dark:hover {
+  background: #27272A;
+  color: #FFFFFF;
+  transform: translateY(-0.5px);
+}
+
+.erp-btn-dark:active {
+  transform: scale(0.98);
+}
+
+.erp-btn-outline {
+  background: #FFFFFF;
+  color: #18181B;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  font-weight: 500;
+  font-size: 11.5px;
+  border-radius: 10px;
+  padding: 5px 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease;
+}
+
+.erp-btn-outline:hover {
+  background: #F8F9FA;
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
+/* Elegant alert container */
+.erp-alert-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Status pills */
+.erp-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2.5px 8.5px;
+  border-radius: 9999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.erp-status-pill-emerald {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.erp-status-pill-amber {
+  background: rgba(245, 158, 11, 0.1);
+  color: #B45309;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.erp-status-pill-rose {
+  background: rgba(239, 68, 68, 0.09);
+  color: #BE123C;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.erp-status-pill-neutral {
+  background: #F4F4F5;
+  color: #52525B;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
