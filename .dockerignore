@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+scratch
+*.zip
+*.bat
+claves.txt
+erp-empresa/backup*
+erp-empresa/data/*.db-shm
+erp-empresa/data/*.db-wal
